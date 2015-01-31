@@ -22,10 +22,10 @@ public abstract class Rotate {
 			LayerUtil.manageLayer(right, true);
 			float mRot = (up ? 1 : -1) * (-ROT_MAX + ROT_MAX*positionOffset);
 			float mTrans = (up ? -1 : 1) * (float) (pager.getMeasuredHeight() - pager.getMeasuredHeight()*Math.cos(mRot*Math.PI/180.0f));
-            left.setPivotX(right.getMeasuredWidth()*0.5f);
-            left.setPivotY(up ? 0 : right.getMeasuredHeight());
-            left.setTranslationY(mTrans);
-            left.setRotation(mRot);
+            right.setPivotX(right.getMeasuredWidth()*0.5f);
+            right.setPivotY(up ? 0 : right.getMeasuredHeight());
+            right.setTranslationY(mTrans);
+            right.setRotation(mRot);
 		}
 	}
 

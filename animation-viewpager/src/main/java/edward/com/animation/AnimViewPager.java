@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -13,16 +12,16 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import edward.com.animation.effects.Fade;
-import edward.com.animation.effects.Tablet;
 import edward.com.animation.impl.Effect4ViewPager;
 import edward.com.animation.utils.LayerUtil;
+import edward.com.animationviewpager.R;
 
 
 public class AnimViewPager extends ViewPager {
 
 	private boolean mEnabled = true;
 	private boolean mFadeEnabled = false;
-	private Effect4ViewPager effect = new Tablet();
+	private Effect4ViewPager effect;
 	private HashMap<Integer, Object> mObjs = new LinkedHashMap<>();
 
 
@@ -81,7 +80,7 @@ public class AnimViewPager extends ViewPager {
 		
 		if (mFadeEnabled)
 			new Fade().setAnimations(mLeft, mRight, effectOffset,positionOffsetPixels);
-		if (mState != State.IDLE) {
+		if (mState != State.IDLE && effect != null) {
             effect.setViewPager(this);
 			effect.setAnimations(mLeft, mRight, effectOffset,positionOffsetPixels);
 		}

@@ -14,6 +14,6 @@ public class RotateDown extends Rotate implements Effect4ViewPager {
 
     @Override
     public void setViewPager(ViewPager pager){
-
+        super.setViewPager(pager);
     }
 }
