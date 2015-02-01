@@ -20,7 +20,7 @@ import edward.com.animation.impl.HasDirection;
  * */
 public class Fade implements Effect4ViewPager,Effect4View,HasAction,HasDirection{
 
-    private Direction direction = Direction.TOP;
+    private Direction direction;
     private Action action = Action.IN;
 
     public Fade(){
