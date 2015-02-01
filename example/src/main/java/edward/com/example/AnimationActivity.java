@@ -13,17 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edward.com.animation.AnimViewPager;
-import edward.com.animation.effects.Accordion;
-import edward.com.animation.effects.CudeIn;
-import edward.com.animation.effects.CudeOut;
-import edward.com.animation.effects.FlipHorizontal;
-import edward.com.animation.effects.FlipVertical;
-import edward.com.animation.effects.RotateDown;
-import edward.com.animation.effects.RotateUp;
-import edward.com.animation.effects.Stack;
-import edward.com.animation.effects.Tablet;
-import edward.com.animation.effects.ZoomIn;
-import edward.com.animation.effects.ZoomOut;
+import edward.com.animation.effects.*;
 import edward.com.animation.impl.Effect4ViewPager;
 
 public class AnimationActivity extends ActionBarActivity {

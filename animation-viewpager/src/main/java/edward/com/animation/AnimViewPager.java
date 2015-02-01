@@ -81,7 +81,6 @@ public class AnimViewPager extends ViewPager {
 		if (mFadeEnabled)
 			new Fade().setAnimations(mLeft, mRight, effectOffset,positionOffsetPixels);
 		if (mState != State.IDLE && effect != null) {
-            effect.setViewPager(this);
 			effect.setAnimations(mLeft, mRight, effectOffset,positionOffsetPixels);
 		}
 		super.onPageScrolled(position, positionOffset, positionOffsetPixels);
@@ -120,5 +119,6 @@ public class AnimViewPager extends ViewPager {
 
     public void setEffect(Effect4ViewPager effect) {
         this.effect = effect;
+        this.effect.setViewPager(this);
     }
 }
