@@ -6,7 +6,7 @@ import edward.com.animation.utils.LayerUtil;
 
 public abstract class Cude {
 
-	public void setAnimations(View left, View right, float positionOffset,
+	protected void setAnimations(View left, View right, float positionOffset,
                               boolean in) {
 		if (left != null) {
 			LayerUtil.manageLayer(left, true);

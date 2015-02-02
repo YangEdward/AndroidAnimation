@@ -21,6 +21,9 @@ public class Bounce implements Effect4View,HasAction,HasDirection{
     /*Support Action.In*/
     private Action action;
 
+    public Bounce(){
+    }
+
     public Bounce(Action action,Direction direction){
         this.action = action;
         this.direction = direction;

@@ -26,7 +26,7 @@ public class Zoom implements Effect4View,HasAction,HasDirection {
         this.action = action;
     }
 	
-	public void setAnimations(View left, View right, float positionOffset,boolean in) {
+	protected void setAnimations(View left, View right, float positionOffset,boolean in) {
 		if (left != null) {
 			LayerUtil.manageLayer(left, true);
 			float mScale = in ? ZOOM_MAX + (1-ZOOM_MAX)*(1-positionOffset) :
@@ -76,17 +76,21 @@ public class Zoom implements Effect4View,HasAction,HasDirection {
     }
     @Override
     public void reset(View target) {
-
+        target.setScaleX(1);
+        target.setScaleY(1);
+        target.setAlpha(1);
+        target.setTranslationX(0);
+        target.setTranslationY(0);
     }
 
     @Override
     public void setAction(Action action) {
-
+        this.action = action;
     }
 
     @Override
     public void setDirection(Direction direction) {
-
+        this.direction = direction;
     }
 
     @Override
