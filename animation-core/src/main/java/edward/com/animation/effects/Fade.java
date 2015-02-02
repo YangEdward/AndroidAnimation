@@ -3,14 +3,12 @@ package edward.com.animation.effects;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.view.View;
-
 
 import edward.com.animation.enums.Action;
 import edward.com.animation.enums.Direction;
 import edward.com.animation.impl.Effect4View;
-import edward.com.animation.impl.Effect4ViewPager;
+import edward.com.animation.impl.EffectTransformer;
 import edward.com.animation.impl.HasAction;
 import edward.com.animation.impl.HasDirection;
 
@@ -18,7 +16,7 @@ import edward.com.animation.impl.HasDirection;
  * Now just for ViewPager,Fade In and Fade Out
  * Time 2015-2-1
  * */
-public class Fade implements Effect4ViewPager,Effect4View,HasAction,HasDirection{
+public class Fade extends EffectTransformer implements Effect4View,HasAction,HasDirection{
 
     private Direction direction;
     private Action action = Action.IN;
@@ -32,19 +30,9 @@ public class Fade implements Effect4ViewPager,Effect4View,HasAction,HasDirection
         this.action = action;
     }
 
-	@Override
-	public void setAnimations(View left, View right, float positionOffset,int positionOffsetPixels) {
-		if (left != null) {
-			left.setAlpha(1-positionOffset);
-		}
-		if (right != null) {
-			right.setAlpha(positionOffset);
-		}
-	}
-
     @Override
-    public void setViewPager(ViewPager pager) {
-        return;
+    protected void onTransform(View page, float position) {
+
     }
 
     @Override

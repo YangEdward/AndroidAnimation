@@ -1,32 +1,30 @@
+/*
+ * Copyright 2014 Toxic Bakery
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package edward.com.animation.effects;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import edward.com.animation.impl.Effect4ViewPager;
-import edward.com.animation.utils.LayerUtil;
+import edward.com.animation.impl.EffectTransformer;
 
 
-public class Accordion implements Effect4ViewPager {
-
-    @Override
-    public void setAnimations(View left, View right, float positionOffset, int positionOffsetPixels) {
-        if (left != null) {
-            LayerUtil.manageLayer(left, true);
-            left.setPivotX(left.getMeasuredWidth());
-            left.setPivotY(0);
-            left.setScaleX(1-positionOffset);
-        }
-        if (right != null) {
-            LayerUtil.manageLayer(right, true);
-            right.setPivotX(0);
-            right.setPivotY(0);
-            right.setScaleX(positionOffset);
-        }
-    }
+public class Accordion extends EffectTransformer {
 
     @Override
-    public void setViewPager(ViewPager pager) {
-
+    protected void onTransform(View view, float position) {
+        view.setPivotX(position < 0 ? 0 : view.getWidth());
+        view.setScaleX(position < 0 ? 1f + position : 1f - position);
     }
 }

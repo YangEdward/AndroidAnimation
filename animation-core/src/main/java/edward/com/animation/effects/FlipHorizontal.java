@@ -1,23 +1,33 @@
+/*
+ * Copyright 2014 YangEdward
+ * Thank you for Toxic Bakery
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import edward.com.animation.enums.Action;
 import edward.com.animation.impl.Effect4View;
-import edward.com.animation.impl.Effect4ViewPager;
+import edward.com.animation.impl.EffectTransformer;
 import edward.com.animation.impl.HasAction;
-import edward.com.animation.utils.LayerUtil;
 
-/**
- * Created by Edward on 2015/1/31.
- */
-public class FlipHorizontal implements Effect4ViewPager,Effect4View,HasAction{
+public class FlipHorizontal extends EffectTransformer implements Effect4View,HasAction{
 
-    private ViewPager pager;
     private Action action = Action.IN;
 
     public FlipHorizontal(){
@@ -29,42 +39,13 @@ public class FlipHorizontal implements Effect4ViewPager,Effect4View,HasAction{
     }
 
     @Override
-    public void setAnimations(View left, View right, float positionOffset, int positionOffsetPixels) {
-        if (left != null) {
-            LayerUtil.manageLayer(left, true);
-            float mRot = 180.0f * positionOffset;
-            if (mRot > 90.0f) {
-                left.setVisibility(View.INVISIBLE);
-            } else {
-                if (left.getVisibility() == View.INVISIBLE)
-                    left.setVisibility(View.VISIBLE);
-                int mTrans = positionOffsetPixels;
-                left.setPivotX(left.getMeasuredWidth()*0.5f);
-                left.setPivotY(left.getMeasuredHeight()*0.5f);
-                left.setTranslationX(mTrans);
-                left.setRotationY(mRot);
-            }
-        }
-        if (right != null) {
-            LayerUtil.manageLayer(right, true);
-            float mRot = -180.0f * (1-positionOffset);
-            if (mRot < -90.0f) {
-                right.setVisibility(View.INVISIBLE);
-            } else {
-                if (right.getVisibility() == View.INVISIBLE)
-                    right.setVisibility(View.VISIBLE);
-                int mTrans = -pager.getWidth()-pager.getPageMargin()+positionOffsetPixels;
-                right.setPivotX(right.getMeasuredWidth()*0.5f);
-                right.setPivotY(right.getMeasuredHeight()*0.5f);
-                right.setTranslationX(mTrans);
-                right.setRotationY(mRot);
-            }
-        }
-    }
+    protected void onTransform(View view, float position) {
+        final float rotation = 180f * position;
 
-    @Override
-    public void setViewPager(ViewPager pager) {
-        this.pager = pager;
+        view.setAlpha(rotation > 90f || rotation < -90f ? 0 : 1);
+        view.setPivotX(view.getWidth() * 0.5f);
+        view.setPivotY(view.getHeight() * 0.5f);
+        view.setRotationY(rotation);
     }
 
     @Override

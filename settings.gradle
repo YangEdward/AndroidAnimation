@@ -1,1 +1,1 @@
-include ':animation-core', ':animation-viewpager', ':example'
+include ':animation-core',':example'

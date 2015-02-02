@@ -13,5 +13,10 @@
         <item>RotateUp</item>
         <item>RotateDown</item>
         <item>Accordion</item>
+        <item>BackgroundToForeground</item>
+        <item>DepthPage</item>
+        <item>ForegroundToBackground</item>
+        <item>Scale</item>
+        <item>ZoomOutSlide</item>
     </string-array>
 </resources>

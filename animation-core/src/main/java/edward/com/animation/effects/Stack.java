@@ -1,32 +1,28 @@
+/*
+ * Copyright 2014 Toxic Bakery
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package edward.com.animation.effects;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import edward.com.animation.impl.Effect4ViewPager;
-import edward.com.animation.utils.LayerUtil;
+import edward.com.animation.impl.EffectTransformer;
 
-public class Stack implements Effect4ViewPager {
-	protected static final float SCALE_MAX = 0.5f;
-    private ViewPager pager;
-
+public class Stack extends EffectTransformer {
     @Override
-    public void setAnimations(View left, View right, float positionOffset, int positionOffsetPixels) {
-        if (right != null) {
-            LayerUtil.manageLayer(right, true);
-            float mScale = (1-SCALE_MAX) * positionOffset + SCALE_MAX;
-            float mTrans = -pager.getWidth()-pager.getPageMargin()+positionOffsetPixels;
-            right.setScaleX(mScale);
-            right.setScaleY(mScale);
-            right.setTranslationX(mTrans);
-        }
-        if (left != null) {
-            left.bringToFront();
-        }
-    }
-
-    @Override
-    public void setViewPager(ViewPager pager) {
-        this.pager = pager;
+    protected void onTransform(View view, float position) {
+        view.setTranslationX(position < 0 ? 0f : -view.getWidth() * position);
     }
 }

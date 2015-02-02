@@ -11,9 +11,6 @@ import java.util.List;
 
 import edward.com.animation.impl.Effect4View;
 
-/**
- * Created by Edward on 2015/2/1.
- */
 public class AnimatorManager {
 
     private List<Animator> mAnimators = new ArrayList<>();

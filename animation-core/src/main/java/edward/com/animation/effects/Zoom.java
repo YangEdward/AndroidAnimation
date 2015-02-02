@@ -10,10 +10,8 @@ import edward.com.animation.enums.Direction;
 import edward.com.animation.impl.Effect4View;
 import edward.com.animation.impl.HasAction;
 import edward.com.animation.impl.HasDirection;
-import edward.com.animation.utils.LayerUtil;
 
 public class Zoom implements Effect4View,HasAction,HasDirection {
-	protected static final float ZOOM_MAX = 0.5f;
     private Direction direction;
     private Action action = Action.IN;
 
@@ -25,27 +23,6 @@ public class Zoom implements Effect4View,HasAction,HasDirection {
         this.direction = direction;
         this.action = action;
     }
-	
-	protected void setAnimations(View left, View right, float positionOffset,boolean in) {
-		if (left != null) {
-			LayerUtil.manageLayer(left, true);
-			float mScale = in ? ZOOM_MAX + (1-ZOOM_MAX)*(1-positionOffset) :
-				1+ZOOM_MAX - ZOOM_MAX*(1-positionOffset);
-            left.setPivotX(left.getMeasuredWidth()*0.5f);
-            left.setPivotY(left.getMeasuredHeight()*0.5f);
-            left.setScaleX(mScale);
-            left.setScaleY(mScale);
-		}
-		if (right != null) {
-			LayerUtil.manageLayer(right, true);
-			float mScale = in ? ZOOM_MAX + (1-ZOOM_MAX)*positionOffset :
-				1+ZOOM_MAX - ZOOM_MAX*positionOffset;
-            right.setPivotX(right.getMeasuredWidth()*0.5f);
-            right.setPivotY(right.getMeasuredHeight()*0.5f);
-            right.setScaleX(mScale);
-            right.setScaleY(mScale);
-		}
-	}
 
     @Override
     public Animator[] getAnimators(View target) {

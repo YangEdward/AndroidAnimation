@@ -1,19 +1,41 @@
+/*
+ * Copyright 2014 Toxic Bakery
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package edward.com.animation.effects;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import edward.com.animation.impl.Effect4ViewPager;
+import edward.com.animation.impl.EffectTransformer;
 
-public class RotateDown extends Rotate implements Effect4ViewPager {
+public class RotateDown extends EffectTransformer {
+
+    private static final float ROT_MOD = -15f;
 
     @Override
-    public void setAnimations(View left, View right, float positionOffset, int positionOffsetPixels) {
-        super.setAnimations(left, right, positionOffset, false);
+    protected void onTransform(View view, float position) {
+        final float width = view.getWidth();
+        final float height = view.getHeight();
+        final float rotation = ROT_MOD * position * -1.25f;
+
+        view.setPivotX(width * 0.5f);
+        view.setPivotY(height);
+        view.setRotation(rotation);
     }
 
     @Override
-    public void setViewPager(ViewPager pager){
-        super.setViewPager(pager);
+    protected boolean isPagingEnabled() {
+        return true;
     }
 }
