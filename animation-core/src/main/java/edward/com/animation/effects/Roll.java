@@ -41,7 +41,9 @@ public class Roll implements Effect4View,HasAction {
 
     @Override
     public void reset(View target) {
-
+        target.setAlpha(1);
+        target.setTranslationX(0);
+        target.setRotation(0);
     }
 
     @Override

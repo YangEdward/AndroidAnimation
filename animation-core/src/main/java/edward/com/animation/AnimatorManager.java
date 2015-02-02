@@ -2,6 +2,7 @@ package edward.com.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.animation.Interpolator;
 
@@ -22,7 +23,7 @@ public class AnimatorManager {
     private boolean isNeedReset = true;
     private long duration = 1000;
 
-    private AnimatorManager(View target){
+    private AnimatorManager(@NonNull View target){
         this.target = target;
         animatorSet = new AnimatorSet();
     }
@@ -31,7 +32,7 @@ public class AnimatorManager {
         return new AnimatorManager(target);
     }
 
-    public void putEffect(Effect4View effect){
+    public void putEffect(@NonNull Effect4View effect){
         effects.add(effect);
         for (Animator animator : effect.getAnimators(target)){
             mAnimators.add(animator);
@@ -85,12 +86,12 @@ public class AnimatorManager {
         return this;
     }
 
-    public AnimatorManager setInterpolator(Interpolator interpolator) {
+    public AnimatorManager setInterpolator(@NonNull Interpolator interpolator) {
         animatorSet.setInterpolator(interpolator);
         return this;
     }
 
-    public AnimatorManager addAnimatorListener(Animator.AnimatorListener l) {
+    public AnimatorManager addAnimatorListener(@NonNull Animator.AnimatorListener l) {
         animatorSet.addListener(l);
         return this;
     }
