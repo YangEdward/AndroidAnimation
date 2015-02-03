@@ -61,6 +61,9 @@ public class AnimatorManager {
      */
     public void start() {
         animatorSet.setDuration(duration);
+        for (Effect4View effect : effects){
+            effect.reset(target);
+        }
         animatorSet.start();
     }
 
