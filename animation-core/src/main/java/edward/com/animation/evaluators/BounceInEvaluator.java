@@ -18,11 +18,11 @@ package edward.com.animation.evaluators;
 
 public class BounceInEvaluator extends BaseEvaluator {
 
-    private BounceEaseOut mBounceEaseOut;
+    private BounceOutEvaluator mBounceEaseOut;
 
     public BounceInEvaluator(float duration){
         super(duration);
-        mBounceEaseOut = new BounceEaseOut(duration);
+        mBounceEaseOut = new BounceOutEvaluator(duration);
     }
 
     @Override

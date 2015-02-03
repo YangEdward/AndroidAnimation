@@ -1,1 +1,1 @@
-include ':animation-core',':example'
+include ':animation-core',':example', ':animation-abslistview'

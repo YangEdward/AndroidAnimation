@@ -25,23 +25,21 @@ public class AnimatorManager {
         this.target = target;
         animatorSet = new AnimatorSet();
         Effect4View effect = new Fade();
-        effects.add(effect);
-        for (Animator animator : effect.getAnimators(target)){
-            mAnimators.add(animator);
-        }
+        putEffect(effect);
     }
 
     public static AnimatorManager with(@NonNull View target){
         return new AnimatorManager(target);
     }
 
-    public void putEffect(@NonNull Effect4View effect){
+    public AnimatorManager putEffect(@NonNull Effect4View effect){
         if(!isContain(effect)){
             effects.add(effect);
             for (Animator animator : effect.getAnimators(target)){
                 mAnimators.add(animator);
             }
         }
+        return this;
     }
 
     public void removeEffect(@NonNull Effect4View effect){
@@ -53,6 +51,13 @@ public class AnimatorManager {
         }
     }
 
+    public void removeAllEffect(){
+       if(!isEmpty()){
+           effects.clear();
+           mAnimators.clear();
+       }
+
+    }
     public void animate() {
         if(isNeedReset){
             reset();
@@ -101,7 +106,7 @@ public class AnimatorManager {
     }
 
     public AnimatorManager setDuration(long duration) {
-        duration = duration;
+        this.duration = duration;
         return this;
     }
 
@@ -150,5 +155,9 @@ public class AnimatorManager {
 
     public AnimatorSet getAnimatorSet() {
         return animatorSet;
+    }
+
+    private boolean isEmpty(){
+        return effects.isEmpty();
     }
 }
