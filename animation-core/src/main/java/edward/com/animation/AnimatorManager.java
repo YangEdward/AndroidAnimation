@@ -9,6 +9,7 @@ import android.view.animation.Interpolator;
 import java.util.ArrayList;
 import java.util.List;
 
+import edward.com.animation.effects.Fade;
 import edward.com.animation.impl.Effect4View;
 
 public class AnimatorManager {
@@ -23,33 +24,54 @@ public class AnimatorManager {
     private AnimatorManager(@NonNull View target){
         this.target = target;
         animatorSet = new AnimatorSet();
-    }
-
-    public static AnimatorManager with(View target){
-        return new AnimatorManager(target);
-    }
-
-    public void putEffect(@NonNull Effect4View effect){
+        Effect4View effect = new Fade();
         effects.add(effect);
         for (Animator animator : effect.getAnimators(target)){
             mAnimators.add(animator);
         }
     }
 
-    public void animate() {
-        if(effects.size() != 0){
-            if(isNeedReset){
-                reset();
+    public static AnimatorManager with(@NonNull View target){
+        return new AnimatorManager(target);
+    }
+
+    public void putEffect(@NonNull Effect4View effect){
+        if(!isContain(effect)){
+            effects.add(effect);
+            for (Animator animator : effect.getAnimators(target)){
+                mAnimators.add(animator);
             }
-            prepare();
-            start();
         }
     }
 
-    private void reset(){
-        for (Effect4View effect : effects){
-            effect.reset(target);
+    public void removeEffect(@NonNull Effect4View effect){
+        if(isContain(effect)){
+            effects.remove(effect);
+            for (Animator animator : effect.getAnimators(target)){
+                mAnimators.remove(animator);
+            }
         }
+    }
+
+    public void animate() {
+        if(isNeedReset){
+            reset();
+        }
+        prepare();
+        start();
+    }
+
+    private void reset(){
+        target.setAlpha(1);
+        target.setScaleX(1);
+        target.setScaleY(1);
+        target.setTranslationX(0);
+        target.setTranslationY(0);
+        target.setRotation(0);
+        target.setRotationY(0);
+        target.setRotationX(0);
+        target.setPivotX(target.getMeasuredWidth() / 2.0f);
+        target.setPivotY(target.getMeasuredHeight() / 2.0f);
     };
 
     private void prepare(){
@@ -59,12 +81,14 @@ public class AnimatorManager {
     /**
      * start to animate
      */
-    public void start() {
+    private void start() {
         animatorSet.setDuration(duration);
-        for (Effect4View effect : effects){
-            effect.reset(target);
-        }
+        //reset();
         animatorSet.start();
+    }
+
+    public boolean isContain(@NonNull Effect4View effect){
+        return effects.contains(effect);
     }
 
     public boolean isNeedReset() {

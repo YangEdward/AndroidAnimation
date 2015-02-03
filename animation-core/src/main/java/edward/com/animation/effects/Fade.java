@@ -57,12 +57,6 @@ public class Fade extends EffectTransformer implements Effect4View,HasAction,Has
                 ObjectAnimator.ofFloat(target,"alpha",from,to)
         };
     }
-    @Override
-    public void reset(View target) {
-        target.setAlpha(1);
-        target.setTranslationX(0);
-        target.setTranslationY(0);
-    }
 
     @Override
     public void setAction(@NonNull Action action) {

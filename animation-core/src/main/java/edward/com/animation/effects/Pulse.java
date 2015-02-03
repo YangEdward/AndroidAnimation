@@ -17,10 +17,4 @@ public class Pulse implements Effect4View {
                 ObjectAnimator.ofFloat(target, "scaleX", 1, 1.1f, 1)
         };
     }
-
-    @Override
-    public void reset(View target) {
-        target.setScaleX(1);
-        target.setScaleY(1);
-    }
 }

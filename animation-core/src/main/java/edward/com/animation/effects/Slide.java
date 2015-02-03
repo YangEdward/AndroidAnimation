@@ -30,12 +30,6 @@ public class Slide implements Effect4View,HasAction,HasDirection {
         return direction.getAnimators(target,this);
     }
 
-    @Override
-    public void reset(View target) {
-        target.setTranslationX(0);
-        target.setTranslationY(0);
-        target.setAlpha(1);
-    }
 
     @Override
     public void setAction(@NonNull Action action) {

@@ -18,9 +18,4 @@ public class RubberBand implements Effect4View {
         };
     }
 
-    @Override
-    public void reset(View target) {
-        target.setScaleX(1);
-        target.setScaleY(1);
-    }
 }

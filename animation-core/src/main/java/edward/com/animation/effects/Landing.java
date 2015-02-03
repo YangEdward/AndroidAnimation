@@ -33,10 +33,4 @@ public class Landing implements Effect4View {
         return animators;
     }
 
-    @Override
-    public void reset(View target) {
-        target.setScaleX(1);
-        target.setScaleY(1);
-        target.setAlpha(1);
-    }
 }

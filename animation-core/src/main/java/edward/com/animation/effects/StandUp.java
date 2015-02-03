@@ -22,10 +22,4 @@ public class StandUp implements Effect4View {
         };
     }
 
-    @Override
-    public void reset(View target) {
-        target.setRotationX(0);
-        target.setPivotX(target.getMeasuredWidth() / 2.0f);
-        target.setPivotY(target.getMeasuredHeight() / 2.0f);
-    }
 }

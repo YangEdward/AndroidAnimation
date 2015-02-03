@@ -31,9 +31,4 @@ public class DropOut implements Effect4View {
         return animators;
     }
 
-    @Override
-    public void reset(View target) {
-        target.setTranslationY(0);
-        target.setAlpha(1);
-    }
 }

@@ -49,15 +49,6 @@ public class Bounce implements Effect4View,HasAction,HasDirection{
     }
 
     @Override
-    public void reset(View target) {
-        target.setAlpha(1);
-        target.setScaleX(1);
-        target.setScaleY(1);
-        target.setTranslationX(0);
-        target.setTranslationY(0);
-    }
-
-    @Override
     public void setDirection(Direction direction) {
         this.direction = direction;
     }

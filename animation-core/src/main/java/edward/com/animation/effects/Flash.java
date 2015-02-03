@@ -15,8 +15,4 @@ public class Flash implements Effect4View{
         return new Animator[]{ObjectAnimator.ofFloat(target, "alpha", 1, 0, 1, 0, 1)};
     }
 
-    @Override
-    public void reset(View target) {
-        target.setAlpha(1);
-    }
 }

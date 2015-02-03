@@ -8,5 +8,4 @@ import android.view.View;
  */
 public interface Effect4View {
     Animator[] getAnimators(View target);
-    void reset(View target);
 }

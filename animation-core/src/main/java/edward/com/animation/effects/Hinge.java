@@ -36,8 +36,4 @@ public class Hinge implements Effect4View {
         return animators;
     }
 
-    @Override
-    public void reset(View target) {
-
-    }
 }

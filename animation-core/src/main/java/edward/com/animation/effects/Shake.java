@@ -16,9 +16,4 @@ public class Shake implements Effect4View{
                 ObjectAnimator.ofFloat(target, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0)
         };
     }
-
-    @Override
-    public void reset(View target) {
-        target.setTranslationX(0);
-    }
 }

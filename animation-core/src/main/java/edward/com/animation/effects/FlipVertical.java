@@ -65,12 +65,6 @@ public class FlipVertical extends EffectTransformer implements Effect4View,HasAc
     }
 
     @Override
-    public void reset(View target) {
-        target.setAlpha(1);
-        target.setRotationY(0);
-    }
-
-    @Override
     public void setAction(@NonNull Action action) {
         this.action = action;
     }

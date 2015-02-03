@@ -51,13 +51,6 @@ public class Rotate implements Effect4View,HasAction,HasDirection{
             ObjectAnimator.ofFloat(target, "alpha", from, to)
         };
     }
-    @Override
-    public void reset(View target) {
-        target.setAlpha(1);
-        target.setRotation(0);
-        target.setPivotX(target.getMeasuredWidth() / 2.0f);
-        target.setPivotY(target.getMeasuredHeight() / 2.0f);
-    }
 
     @Override
     public void setAction(Action action) {

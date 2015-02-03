@@ -20,9 +20,4 @@ public class Wobble implements Effect4View {
         };
     }
 
-    @Override
-    public void reset(View target) {
-        target.setTranslationX(0);
-        target.setRotation(0);
-    }
 }

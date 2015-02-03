@@ -17,8 +17,4 @@ public class Swing implements Effect4View{
         };
     }
 
-    @Override
-    public void reset(View target) {
-        target.setRotation(0);
-    }
 }
