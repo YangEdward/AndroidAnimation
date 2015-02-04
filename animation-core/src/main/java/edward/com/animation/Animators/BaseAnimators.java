@@ -10,7 +10,7 @@ import edward.com.animation.enums.AnimPropertyName;
 import edward.com.animation.evaluators.BaseEvaluator;
 
 public class BaseAnimators {
-    private static final long DEFAULT_DURATION = 1000;
+    public static final long DEFAULT_DURATION = 1000;
     protected long duration;
     protected Action action;
     protected View target;
@@ -44,7 +44,7 @@ public class BaseAnimators {
         return this;
     }
 
-    public @NonNull ObjectAnimator getmAnimator(){
+    public @NonNull ObjectAnimator getAnimator(){
         mAnimator.setDuration(duration);
         return mAnimator;
     }

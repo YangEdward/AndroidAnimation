@@ -22,7 +22,7 @@ public class Hinge implements Effect4View {
 
     @Override
     public Animator[] getAnimators(View target) {
-        TypeEvaluator<Number> evaluator = new AccelerateDecelerateEvaluator(duration);
+        TypeEvaluator<Number> evaluator = new AccelerateDecelerateEvaluator();
         float x = target.getPaddingLeft();
         float y = target.getPaddingTop();
         ObjectAnimator[] animators =  new ObjectAnimator[]{

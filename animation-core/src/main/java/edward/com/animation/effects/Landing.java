@@ -21,7 +21,7 @@ public class Landing implements Effect4View {
 
     @Override
     public Animator[] getAnimators(View target) {
-        TypeEvaluator<Number> evaluator = new DecelerateEvaluator(duration);
+        TypeEvaluator<Number> evaluator = new DecelerateEvaluator();
         ObjectAnimator[] animators =  new ObjectAnimator[]{
                 ObjectAnimator.ofFloat(target, "scaleX", 1.5f,1f),
                 ObjectAnimator.ofFloat(target, "scaleY", 1.5f,1f),

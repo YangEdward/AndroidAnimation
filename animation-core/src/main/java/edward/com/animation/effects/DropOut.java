@@ -21,7 +21,7 @@ public class DropOut implements Effect4View {
 
     @Override
     public Animator[] getAnimators(View target) {
-        TypeEvaluator<Number> evaluator = new BounceOutEvaluator(duration);
+        TypeEvaluator<Number> evaluator = new BounceOutEvaluator();
         int distance = target.getTop() + target.getHeight();
         ObjectAnimator[] animators =  new ObjectAnimator[]{
                 ObjectAnimator.ofFloat(target, "translationY", -distance, 0),
