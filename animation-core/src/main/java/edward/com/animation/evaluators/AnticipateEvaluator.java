@@ -20,12 +20,7 @@ public class AnticipateEvaluator extends BaseEvaluator{
 
     private float s = 1.70158f;
 
-    public AnticipateEvaluator(float duration) {
-        super(duration);
-    }
-
-    public AnticipateEvaluator(float duration, float back){
-        this(duration);
+    public AnticipateEvaluator(float back){
         s = back;
     }
 

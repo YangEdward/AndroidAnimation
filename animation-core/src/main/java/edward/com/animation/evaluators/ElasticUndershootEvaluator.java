@@ -18,10 +18,6 @@ package edward.com.animation.evaluators;
 
 public class ElasticUndershootEvaluator extends BaseEvaluator{
 
-    public ElasticUndershootEvaluator(float duration) {
-        super(duration);
-    }
-
     @Override
     public Float calculate(float t, float b, float c, float d) {
         if (t==0) return b;  if ((t/=d)==1) return b+c;

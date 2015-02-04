@@ -17,9 +17,6 @@
 package edward.com.animation.evaluators;
 
 public class ElasticOverUnderEvaluator extends BaseEvaluator{
-    public ElasticOverUnderEvaluator(float duration) {
-        super(duration);
-    }
 
     @Override
     public Float calculate(float t, float b, float c, float d) {

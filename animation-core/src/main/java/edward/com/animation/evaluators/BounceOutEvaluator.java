@@ -17,11 +17,6 @@
 package edward.com.animation.evaluators;
 
 public class BounceOutEvaluator extends BaseEvaluator {
-
-    public BounceOutEvaluator(float duration) {
-        super(duration);
-    }
-
     @Override
     public Float calculate(float t, float b, float c, float d) {
         if ((t/=d) < (1/2.75f)) {

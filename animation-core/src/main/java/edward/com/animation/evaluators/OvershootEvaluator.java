@@ -20,12 +20,10 @@ public class OvershootEvaluator extends BaseEvaluator{
 
     private float s = 1.70158f;
 
-    public OvershootEvaluator(float duration) {
-        super(duration);
+    public OvershootEvaluator() {
     }
 
-    public OvershootEvaluator(float duration, float back){
-        this(duration);
+    public OvershootEvaluator(float back){
         s = back;
     }
 

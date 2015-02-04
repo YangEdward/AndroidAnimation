@@ -20,15 +20,11 @@ public class AnticipateOvershootEvaluator extends BaseEvaluator{
 
     private float s = 1.70158f;
 
-    public AnticipateOvershootEvaluator(float duration) {
-        super(duration);
+    public AnticipateOvershootEvaluator() {
     }
-
-    public AnticipateOvershootEvaluator(float duration, float back){
-        this(duration);
+    public AnticipateOvershootEvaluator(float back){
         s = back;
     }
-
     @Override
     public Float calculate(float t, float b, float c, float d) {
         if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;

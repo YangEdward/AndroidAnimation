@@ -20,9 +20,14 @@ public class BounceInEvaluator extends BaseEvaluator {
 
     private BounceOutEvaluator mBounceEaseOut;
 
-    public BounceInEvaluator(float duration){
-        super(duration);
-        mBounceEaseOut = new BounceOutEvaluator(duration);
+    public BounceInEvaluator(){
+        mBounceEaseOut = new BounceOutEvaluator();
+    }
+
+    @Override
+    public void setDuration(float duration) {
+        super.setDuration(duration);
+        mBounceEaseOut.setDuration(duration);
     }
 
     @Override

@@ -19,16 +19,9 @@ import android.animation.TypeEvaluator;
 
 import java.util.ArrayList;
 
-/**
- * Created by Administrator on 2015/2/3.
- */
 public abstract class BaseEvaluator implements TypeEvaluator<Number>{
 
     protected float mDuration;
-
-    public BaseEvaluator(float duration){
-        mDuration = duration;
-    }
 
     private ArrayList<ErasingListener> mListeners = new ArrayList<>();
 

@@ -18,10 +18,6 @@ package edward.com.animation.evaluators;
 
 public class AccelerateDecelerateEvaluator extends BaseEvaluator {
 
-    public AccelerateDecelerateEvaluator(float duration) {
-        super(duration);
-    }
-
     @Override
     public Float calculate(float t, float b, float c, float d) {
         if ((t/=d/2) < 1)
