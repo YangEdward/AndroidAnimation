@@ -7,7 +7,14 @@ import android.view.View;
 /**
  * Created by Edward on 2015/2/1.
  */
-public class Tada implements Effect4View{
+public class Tada extends NoDirection{
+    public Tada() {
+    }
+
+    public Tada(long duration) {
+        super(duration);
+    }
+
     @Override
     public Animator[] getAnimators(View target) {
         return new Animator[]{

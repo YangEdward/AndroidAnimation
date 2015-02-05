@@ -20,7 +20,6 @@ public class Bounce extends HasDirection implements HasAction{
 
     /*Support Action.In*/
     private Action action;
-    private long duration;
     private BaseEvaluator evaluator = new ElasticOvershootEvaluator();
 
     public Bounce(){
@@ -67,27 +66,12 @@ public class Bounce extends HasDirection implements HasAction{
         this.action = action;
     }
 
-    public Bounce setDuration(long duration) {
-        this.duration = duration;
-        return this;
-    }
-
     @Override
     public Animator[] top(View target) {
         return new Animator[]{
                 ObjectAnimator.ofFloat(target,"translationY",target.getMeasuredHeight(), -30,10,0),
                 ObjectAnimator.ofFloat(target,"alpha",0,1,1,1)
         };
-    }
-
-    @Override
-    public Animator[] topLeft(View target) {
-        return new Animator[0];
-    }
-
-    @Override
-    public Animator[] topRight(View target) {
-        return new Animator[0];
     }
 
     @Override
@@ -112,15 +96,5 @@ public class Bounce extends HasDirection implements HasAction{
                 ObjectAnimator.ofFloat(target,"alpha",0,1,1,1),
                 ObjectAnimator.ofFloat(target,"translationY",-target.getHeight(),30,-10,0)
         };
-    }
-
-    @Override
-    public Animator[] bottomLeft(View target) {
-        return new Animator[0];
-    }
-
-    @Override
-    public Animator[] bottomRight(View target) {
-        return new Animator[0];
     }
 }

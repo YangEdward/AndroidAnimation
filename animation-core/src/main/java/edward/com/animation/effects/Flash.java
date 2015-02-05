@@ -1,23 +1,18 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.View;
 
-/**
- * Created by Edward on 2015/2/1.
- */
-public class Flash implements Effect4View{
-
-    private long duration = AnimatorBuilder.DEFAULT_DURATION;
-    private final static int repeatCount = 4;
+public class Flash extends NoDirection{
 
     public Flash() {
+        repeatCount = 4;
     }
 
     public Flash(long duration) {
-        this.duration = duration;
+        super(duration);
+        repeatCount = 4;
     }
 
     @Override
@@ -29,8 +24,4 @@ public class Flash implements Effect4View{
                 getAnimator()};
     }
 
-    public Effect4View setDuration(long duration) {
-        this.duration = duration;
-        return this;
-    }
 }

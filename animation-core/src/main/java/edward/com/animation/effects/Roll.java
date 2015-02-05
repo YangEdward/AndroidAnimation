@@ -8,10 +8,14 @@ import android.view.View;
 /**
  * Created by Administrator on 2015/2/2.
  */
-public class Roll implements Effect4View,HasAction {
+public class Roll extends NoDirection implements HasAction {
 
     private Action action = Action.IN;
     public Roll(@NonNull Action action){
+        this.action = action;
+    }
+    public Roll(@NonNull Action action,long duration){
+        super(duration);
         this.action = action;
     }
     @Override

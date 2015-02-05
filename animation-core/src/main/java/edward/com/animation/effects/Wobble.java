@@ -7,7 +7,15 @@ import android.view.View;
 /**
  * Created by Edward on 2015/2/1.
  */
-public class Wobble implements Effect4View {
+public class Wobble extends NoDirection {
+
+    public Wobble() {
+    }
+
+    public Wobble(long duration) {
+        super(duration);
+    }
+
     @Override
     public Animator[] getAnimators(View target) {
         float width = target.getWidth();

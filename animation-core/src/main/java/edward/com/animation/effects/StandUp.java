@@ -7,7 +7,14 @@ import android.view.View;
 /**
  * Created by Edward on 2015/2/1.
  */
-public class StandUp implements Effect4View {
+public class StandUp extends NoDirection {
+    public StandUp() {
+    }
+
+    public StandUp(long duration) {
+        super(duration);
+    }
+
     @Override
     public Animator[] getAnimators(View target) {
         float x = (target.getWidth() - target.getPaddingLeft() - target.getPaddingRight())/2

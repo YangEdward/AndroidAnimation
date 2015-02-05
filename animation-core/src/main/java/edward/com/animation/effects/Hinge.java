@@ -7,16 +7,14 @@ import android.view.View;
 
 import edward.com.animation.evaluators.AccelerateDecelerateEvaluator;
 
-public class Hinge implements Effect4View {
-
-    private final long duration;
+public class Hinge extends NoDirection {
 
     public Hinge() {
-        duration = 1000;
+
     }
 
     public Hinge(long duration) {
-        this.duration = duration;
+        super(duration);
     }
 
     @Override
@@ -34,5 +32,4 @@ public class Hinge implements Effect4View {
         animators[0].setEvaluator(evaluator);
         return animators;
     }
-
 }

@@ -7,7 +7,15 @@ import android.view.View;
 /**
  * Created by Edward on 2015/2/1.
  */
-public class RubberBand implements Effect4View {
+public class RubberBand extends NoDirection {
+
+    public RubberBand() {
+    }
+
+    public RubberBand(long duration) {
+        super(duration);
+    }
+
     @Override
     public Animator[] getAnimators(View target) {
         return new Animator[]{

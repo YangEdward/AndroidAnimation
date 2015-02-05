@@ -10,16 +10,13 @@ import edward.com.animation.evaluators.DecelerateEvaluator;
 /**
  * Created by Administrator on 2015/2/3.
  */
-public class TakingOff implements Effect4View {
-
-    private final long duration;
+public class TakingOff extends NoDirection {
 
     public TakingOff() {
-        duration = 1000;
     }
 
     public TakingOff(long duration) {
-        this.duration = duration;
+        super(duration);
     }
 
     @Override

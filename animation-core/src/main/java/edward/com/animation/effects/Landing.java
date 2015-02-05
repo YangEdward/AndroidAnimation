@@ -7,15 +7,14 @@ import android.view.View;
 
 import edward.com.animation.evaluators.DecelerateEvaluator;
 
-public class Landing implements Effect4View {
-    private final long duration;
+public class Landing extends NoDirection {
 
     public Landing() {
-        duration = 1000;
+
     }
 
     public Landing(long duration) {
-        this.duration = duration;
+        super(duration);
     }
 
     @Override
@@ -31,5 +30,4 @@ public class Landing implements Effect4View {
         }
         return animators;
     }
-
 }

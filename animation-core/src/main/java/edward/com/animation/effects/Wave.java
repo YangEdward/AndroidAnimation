@@ -7,7 +7,14 @@ import android.view.View;
 /**
  * Created by Edward on 2015/2/1.
  */
-public class Wave implements Effect4View {
+public class Wave extends NoDirection {
+    public Wave() {
+    }
+
+    public Wave(long duration) {
+        super(duration);
+    }
+
     @Override
     public Animator[] getAnimators(View target) {
         float x = (target.getWidth() - target.getPaddingLeft() - target.getPaddingRight())/2

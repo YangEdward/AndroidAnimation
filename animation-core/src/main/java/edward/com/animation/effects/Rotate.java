@@ -7,7 +7,6 @@ import android.view.View;
 public class Rotate extends HasDirection implements HasAction{
 
     private static final float ROT_MAX = 15.0f;
-    private Direction direction;
     private Action action = Action.IN;
 
     public Rotate(){
@@ -48,11 +47,11 @@ public class Rotate extends HasDirection implements HasAction{
 
     @Override
     public void setAction(Action action) {
-
+        this.action = action;
     }
 
     public void setDirection(Direction direction) {
-
+        this.direction = direction;
     }
 
     @Override
