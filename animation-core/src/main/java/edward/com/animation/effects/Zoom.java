@@ -97,13 +97,13 @@ public class Zoom extends HasDirection implements HasAction{
 
     @Override
     public Animator[] right(View target) {
+        isParentNull(target);
         float from = target.getWidth() + target.getPaddingRight();
         float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                ViewGroup parent = (ViewGroup)target.getParent();
                 to = parent.getWidth() - parent.getLeft();
                 from = 0;
                 break;
@@ -113,7 +113,7 @@ public class Zoom extends HasDirection implements HasAction{
 
     @Override
     public Animator[] bottom(View target) {
-        ViewGroup parent = (ViewGroup)target.getParent();
+        isParentNull(target);
         float from = parent.getHeight() - target.getTop();
         float to = 0;
         switch (action){

@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 
 import edward.com.abslistview.util.AnimatorUtil;
@@ -35,6 +36,7 @@ import edward.com.animation.effects.Effect4View;
 public class AnimationAdapter extends BaseAdapterDecorator {
 
     private Effect4View effect;
+    private ScrollHelper helper;
     /**
      * Saved instance state key for the ViewAniamt
      */
@@ -72,13 +74,12 @@ public class AnimationAdapter extends BaseAdapterDecorator {
      *
      * @param baseAdapter the BaseAdapter to wrap.
      */
-    protected AnimationAdapter(@NonNull final BaseAdapter baseAdapter,@NonNull Effect4View effect) {
+    public AnimationAdapter(@NonNull final BaseAdapter baseAdapter,@NonNull Effect4View effect) {
         super(baseAdapter);
         this.effect = effect;
         mGridViewPossiblyMeasuring = true;
         mGridViewMeasuringPosition = -1;
         mIsRootAdapter = true;
-
         if (baseAdapter instanceof AnimationAdapter) {
             ((AnimationAdapter) baseAdapter).setIsWrapped();
         }
@@ -173,9 +174,14 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         } else {
             childAnimators = new Animator[0];
         }
+        if (childAnimators.length != 0){
+            long duration = getDuration();
+            for (Animator animator : childAnimators){
+                animator.setDuration(duration);
+            }
+        }
         Animator[] animators = getAnimators(parent, view);
         //Animator alphaAnimator = ObjectAnimator.ofFloat(view, ALPHA, 0, 1);
-
         Animator[] concatAnimators = AnimatorUtil.concatAnimators(childAnimators, animators);
         mViewAnimator.animateViewIfNecessary(position, view, concatAnimators);
     }
@@ -190,6 +196,21 @@ public class AnimationAdapter extends BaseAdapterDecorator {
     public Animator[] getAnimators(@NonNull ViewGroup parent, @NonNull View view){
         return effect.getAnimators(view);
     };
+
+    public long getDuration(){
+        return effect.getDuration();
+    }
+
+    public void addScrollHelper() {
+        helper = new ScrollHelper();
+        helper.setEffect(effect);
+        ((AbsListView)getListViewWrapper().getListView())
+                .setOnScrollListener(helper);
+    }
+
+    public ScrollHelper getHelper() {
+        return helper;
+    }
 
     /**
      * Returns a Parcelable object containing the AnimationAdapter's current dynamic state.

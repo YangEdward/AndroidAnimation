@@ -25,7 +25,7 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
     private boolean mSimulateGridWithList;
     private final HashSet<Integer> mAlreadyAnimatedItems = new HashSet<>();
     private Effect4View mEffect = null;
-    public static final int DURATION = 600;
+    //public static final int DURATION = 600;
     private AbsListView.OnScrollListener mAdditionalOnScrollListener;
 
     public void setOnScrollListener(AbsListView.OnScrollListener l) {
@@ -158,13 +158,8 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
     }
 
     private void doAnimationImpl(View item, int position, int scrollDirection) {
-        /*ViewPropertyAnimator animator = item.animate()
-                .setDuration(DURATION)
-                .setInterpolator(new AccelerateDecelerateInterpolator());
-
-        scrollDirection = scrollDirection > 0 ? 1 : -1;*/
+        /*scrollDirection = scrollDirection > 0 ? 1 : -1;*/
         AnimatorManager.with(item)
-                .setDuration(DURATION)
                 .putEffect(mEffect)
                 .animate();
         /*mEffect.initView(item, position, scrollDirection);

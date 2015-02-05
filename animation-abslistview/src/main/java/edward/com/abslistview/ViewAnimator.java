@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.GridView;
 
 import edward.com.abslistview.util.ListViewWrapper;
+import edward.com.animation.AnimatorManager;
 
 
 /**
@@ -223,7 +224,8 @@ public class ViewAnimator {
      * @param position the position of the item the View represents.
      * @param view     the View that should be animated.
      */
-    public void animateViewIfNecessary(final int position, @NonNull final View view, @NonNull final Animator[] animators) {
+    public void animateViewIfNecessary(final int position,
+        @NonNull final View view, @NonNull final Animator[] animators) {
         if (mShouldAnimate && position > mLastAnimatedPosition) {
             if (mFirstAnimatedPosition == -1) {
                 mFirstAnimatedPosition = position;
@@ -239,19 +241,18 @@ public class ViewAnimator {
      *
      * @param view the View that should be animated.
      */
-    private void animateView(final int position, @NonNull final View view, @NonNull final Animator[] animators) {
+    private void animateView(final int position,
+        @NonNull final View view, @NonNull final Animator[] animators) {
         if (mAnimationStartMillis == -1) {
             mAnimationStartMillis = SystemClock.uptimeMillis();
         }
-
         view.setAlpha(0);
-        AnimatorSet set = new AnimatorSet();
-        set.playTogether(animators);
-        set.setStartDelay(calculateAnimationDelay(position));
-        set.setDuration(mAnimationDurationMillis);
-        set.start();
-
-        mAnimators.put(view.hashCode(), set);
+        AnimatorManager manager = AnimatorManager.with(view)
+                .putAnimators(animators)
+                .setStartDelay(calculateAnimationDelay(position));
+        manager.setNeedReset(false);
+        manager.animate();
+        mAnimators.put(view.hashCode(), manager.getAnimatorSet());
     }
 
     /**

@@ -24,8 +24,8 @@ public class AnimatorManager {
     private AnimatorManager(@NonNull View target){
         this.target = target;
         animatorSet = new AnimatorSet();
-        Effect4View effect = new Fade();
-        putEffect(effect);
+        /*Effect4View effect = new Fade();
+        putEffect(effect);*/
     }
 
     public static AnimatorManager with(@NonNull View target){
@@ -38,6 +38,13 @@ public class AnimatorManager {
             for (Animator animator : effect.getAnimators(target)){
                 mAnimators.add(animator);
             }
+        }
+        return this;
+    }
+
+    public AnimatorManager putAnimators(@NonNull Animator[] animators){
+        for (Animator animator : animators) {
+            mAnimators.add(animator);
         }
         return this;
     }
@@ -87,7 +94,7 @@ public class AnimatorManager {
      * start to animate
      */
     private void start() {
-        animatorSet.setDuration(duration);
+        //animatorSet.setDuration(duration);
         //reset();
         animatorSet.start();
     }

@@ -20,4 +20,9 @@ public abstract class NoDirection implements Effect4View {
         this.duration = duration;
         return this;
     }
+
+    @Override
+    public long getDuration() {
+        return duration;
+    }
 }

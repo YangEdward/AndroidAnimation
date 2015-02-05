@@ -54,7 +54,7 @@ public class Slide extends HasDirection implements HasAction {
 
     @Override
     public Animator[] left(View target) {
-        ViewGroup parent = (ViewGroup)target.getParent();
+        isParentNull(target);
         float from = target.getLeft() - parent.getWidth();
         float to = 0;
         switch (action){
@@ -70,7 +70,7 @@ public class Slide extends HasDirection implements HasAction {
 
     @Override
     public Animator[] right(View target) {
-        ViewGroup parent = (ViewGroup)target.getParent();
+        isParentNull(target);
         float from = parent.getWidth() - target.getLeft();
         float to = 0;
         switch (action){
@@ -86,7 +86,7 @@ public class Slide extends HasDirection implements HasAction {
 
     @Override
     public Animator[] bottom(View target) {
-        ViewGroup parent = (ViewGroup)target.getParent();
+        isParentNull(target);
         float from = parent.getHeight() - target.getTop();
         float to = 0;
         switch (action){
