@@ -1,4 +1,4 @@
-package edward.com.animation.impl;
+package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.view.View;

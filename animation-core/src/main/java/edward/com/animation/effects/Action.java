@@ -1,4 +1,4 @@
-package edward.com.animation.enums;
+package edward.com.animation.effects;
 
 import android.animation.Animator;
 

@@ -1,8 +1,6 @@
-package edward.com.animation.impl;
+package edward.com.animation.effects;
 
 import android.support.annotation.NonNull;
-
-import edward.com.animation.enums.Action;
 
 /**
  * Created by Edward on 2015/2/1.

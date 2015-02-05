@@ -6,22 +6,16 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edward.com.animation.enums.Action;
-import edward.com.animation.enums.Direction;
-import edward.com.animation.impl.Effect4View;
-import edward.com.animation.impl.HasAction;
-import edward.com.animation.impl.HasDirection;
-
 /**
  * Created by Administrator on 2015/2/2.
  */
-public class Slide implements Effect4View,HasAction,HasDirection {
+public class Slide extends HasDirection implements HasAction {
 
     private Direction direction = Direction.TOP;
     private Action action = Action.IN;
 
     public Slide(@NonNull Direction direction,@NonNull Action action){
-        this.direction = direction;
+        super(direction);
         this.action = action;
     }
 

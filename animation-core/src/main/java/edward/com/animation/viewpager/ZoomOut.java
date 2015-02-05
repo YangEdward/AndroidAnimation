@@ -13,29 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
-public class RotateUp extends EffectTransformer {
-
-    private static final float ROT_MOD = -15f;
+public class ZoomOut extends EffectTransformer {
 
     @Override
     protected void onTransform(View view, float position) {
-        final float width = view.getWidth();
-        final float rotation = ROT_MOD * position;
-
-        view.setPivotX(width * 0.5f);
-        view.setPivotY(0f);
-        view.setTranslationX(0f);
-        view.setRotation(rotation);
-    }
-
-    @Override
-    protected boolean isPagingEnabled() {
-        return true;
+        final float scale = 1f + Math.abs(position);
+        view.setScaleX(scale);
+        view.setScaleY(scale);
+        view.setPivotX(view.getWidth() * 0.5f);
+        view.setPivotY(view.getHeight() * 0.5f);
+        view.setAlpha(position < -1f || position > 1f ? 0f : 1f - (scale - 1f));
+        if(position == -1){
+            view.setTranslationX(view.getWidth() * -1);
+        }
     }
 }

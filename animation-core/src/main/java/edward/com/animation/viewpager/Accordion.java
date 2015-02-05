@@ -13,24 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
 
-public class ZoomOut extends EffectTransformer {
+public class Accordion extends EffectTransformer {
 
     @Override
     protected void onTransform(View view, float position) {
-        final float scale = 1f + Math.abs(position);
-        view.setScaleX(scale);
-        view.setScaleY(scale);
-        view.setPivotX(view.getWidth() * 0.5f);
-        view.setPivotY(view.getHeight() * 0.5f);
-        view.setAlpha(position < -1f || position > 1f ? 0f : 1f - (scale - 1f));
-        if(position == -1){
-            view.setTranslationX(view.getWidth() * -1);
-        }
+        view.setPivotX(position < 0 ? 0 : view.getWidth());
+        view.setScaleX(position < 0 ? 1f + position : 1f - position);
     }
 }

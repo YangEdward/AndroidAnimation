@@ -4,8 +4,6 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-import edward.com.animation.impl.Effect4View;
-
 /**
  * Created by Edward on 2015/2/1.
  */

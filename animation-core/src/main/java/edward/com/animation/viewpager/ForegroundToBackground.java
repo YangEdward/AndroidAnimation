@@ -13,18 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
-
-public class Accordion extends EffectTransformer {
-
+public class ForegroundToBackground extends EffectTransformer {
     @Override
     protected void onTransform(View view, float position) {
-        view.setPivotX(position < 0 ? 0 : view.getWidth());
-        view.setScaleX(position < 0 ? 1f + position : 1f - position);
+        final float height = view.getHeight();
+        final float width = view.getWidth();
+        final float scale = min(position > 0 ? 1f : Math.abs(1f + position), 0.5f);
+
+        view.setScaleX(scale);
+        view.setScaleY(scale);
+        view.setPivotX(width * 0.5f);
+        view.setPivotY(height * 0.5f);
+        view.setTranslationX(position > 0 ? width * position : -width * position * 0.25f);
     }
 }

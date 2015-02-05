@@ -28,7 +28,7 @@ public class OvershootEvaluator extends BaseEvaluator{
     }
 
     @Override
-    public Float calculate(float t, float b, float c, float d) {
+    public float calculate(float t, float b, float c, float d) {
         return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
     }
 }

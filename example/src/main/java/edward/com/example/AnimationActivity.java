@@ -12,23 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edward.com.animation.effects.Accordion;
-import edward.com.animation.effects.BackgroundToForeground;
-import edward.com.animation.effects.CudeIn;
-import edward.com.animation.effects.CudeOut;
-import edward.com.animation.effects.DepthPage;
-import edward.com.animation.effects.FlipHorizontal;
-import edward.com.animation.effects.FlipVertical;
-import edward.com.animation.effects.ForegroundToBackground;
-import edward.com.animation.effects.RotateDown;
-import edward.com.animation.effects.RotateUp;
-import edward.com.animation.effects.Scale;
-import edward.com.animation.effects.Stack;
-import edward.com.animation.effects.Tablet;
-import edward.com.animation.effects.ZoomIn;
-import edward.com.animation.effects.ZoomOut;
-import edward.com.animation.effects.ZoomOutSlide;
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.Accordion;
+import edward.com.animation.viewpager.BackgroundToForeground;
+import edward.com.animation.viewpager.CudeIn;
+import edward.com.animation.viewpager.CudeOut;
+import edward.com.animation.viewpager.DepthPage;
+import edward.com.animation.viewpager.FlipHorizontal;
+import edward.com.animation.viewpager.FlipVertical;
+import edward.com.animation.viewpager.ForegroundToBackground;
+import edward.com.animation.viewpager.RotateDown;
+import edward.com.animation.viewpager.RotateUp;
+import edward.com.animation.viewpager.Scale;
+import edward.com.animation.viewpager.Stack;
+import edward.com.animation.viewpager.Tablet;
+import edward.com.animation.viewpager.ZoomIn;
+import edward.com.animation.viewpager.ZoomOut;
+import edward.com.animation.viewpager.ZoomOutSlide;
+import edward.com.animation.viewpager.EffectTransformer;
 
 public class AnimationActivity extends ActionBarActivity {
 

@@ -5,22 +5,16 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edward.com.animation.enums.Action;
-import edward.com.animation.enums.Direction;
-import edward.com.animation.impl.Effect4View;
-import edward.com.animation.impl.HasAction;
-import edward.com.animation.impl.HasDirection;
-
-public class Zoom implements Effect4View,HasAction,HasDirection {
+public class Zoom extends HasDirection implements HasAction{
     private Direction direction;
     private Action action = Action.IN;
 
     public Zoom(){
-
+        super(null);
     }
 
     public Zoom(Direction direction,Action action){
-        this.direction = direction;
+        super(direction);
         this.action = action;
     }
 

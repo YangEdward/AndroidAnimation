@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
 
 public class Tablet extends EffectTransformer {

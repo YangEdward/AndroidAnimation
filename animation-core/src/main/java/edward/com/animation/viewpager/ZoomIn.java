@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
-public class Stack extends EffectTransformer {
+public class ZoomIn extends EffectTransformer {
+
     @Override
     protected void onTransform(View view, float position) {
-        view.setTranslationX(position < 0 ? 0f : -view.getWidth() * position);
+        final float scale = position < 0 ? position + 1f : Math.abs(1f - position);
+        view.setScaleX(scale);
+        view.setScaleY(scale);
+        view.setPivotX(view.getWidth() * 0.5f);
+        view.setPivotY(view.getHeight() * 0.5f);
+        view.setAlpha(position < -1f || position > 1f ? 0f : 1f - (scale - 1f));
     }
 }

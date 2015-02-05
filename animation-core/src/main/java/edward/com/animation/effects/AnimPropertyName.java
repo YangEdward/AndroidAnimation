@@ -1,4 +1,4 @@
-package edward.com.animation.enums;
+package edward.com.animation.effects;
 
 /**
  * Created by Administrator on 15-2-4.

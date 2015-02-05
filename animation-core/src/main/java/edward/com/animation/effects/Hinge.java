@@ -6,7 +6,6 @@ import android.animation.TypeEvaluator;
 import android.view.View;
 
 import edward.com.animation.evaluators.AccelerateDecelerateEvaluator;
-import edward.com.animation.impl.Effect4View;
 
 public class Hinge implements Effect4View {
 

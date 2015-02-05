@@ -6,7 +6,6 @@ import android.animation.TypeEvaluator;
 import android.view.View;
 
 import edward.com.animation.evaluators.DecelerateEvaluator;
-import edward.com.animation.impl.Effect4View;
 
 /**
  * Created by Administrator on 2015/2/3.

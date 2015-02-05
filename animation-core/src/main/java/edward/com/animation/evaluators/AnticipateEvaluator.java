@@ -25,7 +25,7 @@ public class AnticipateEvaluator extends BaseEvaluator{
     }
 
     @Override
-    public Float calculate(float t, float b, float c, float d) {
+    public float calculate(float t, float b, float c, float d) {
         return c*(t/=d)*t*((s+1)*t - s) + b;
     }
 

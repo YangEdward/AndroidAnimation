@@ -34,7 +34,7 @@ public class BounceInOutEvaluator extends BaseEvaluator{
     }
 
     @Override
-    public Float calculate(float t, float b, float c, float d) {
+    public float calculate(float t, float b, float c, float d) {
         if (t < d/2)
             return mBounceInEvaluator.calculate (t*2, 0, c, d) * .5f + b;
         else

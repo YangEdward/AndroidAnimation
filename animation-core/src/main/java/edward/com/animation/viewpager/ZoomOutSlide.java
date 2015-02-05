@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
 /**
  * Created by Administrator on 2015/2/2.

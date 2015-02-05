@@ -6,7 +6,6 @@ import android.animation.TypeEvaluator;
 import android.view.View;
 
 import edward.com.animation.evaluators.DecelerateEvaluator;
-import edward.com.animation.impl.Effect4View;
 
 public class Landing implements Effect4View {
     private final long duration;

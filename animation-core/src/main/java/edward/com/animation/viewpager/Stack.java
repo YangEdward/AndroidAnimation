@@ -13,26 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
-/**
- * Created by Administrator on 2015/2/2.
- */
-public class BackgroundToForeground extends EffectTransformer {
+public class Stack extends EffectTransformer {
     @Override
     protected void onTransform(View view, float position) {
-        final float height = view.getHeight();
-        final float width = view.getWidth();
-        final float scale = min(position < 0 ? 1f : Math.abs(1f - position), 0.5f);
-
-        view.setScaleX(scale);
-        view.setScaleY(scale);
-        view.setPivotX(width * 0.5f);
-        view.setPivotY(height * 0.5f);
-        view.setTranslationX(position < 0 ? width * position : -width * position * 0.25f);
+        view.setTranslationX(position < 0 ? 0f : -view.getWidth() * position);
     }
 }

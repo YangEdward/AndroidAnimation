@@ -1,9 +1,9 @@
-package edward.com.animation.enums;
+package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.view.View;
 
-import edward.com.animation.impl.HasDirection;
+import edward.com.animation.effects.HasDirection;
 
 /**
  * Created by Edward on 2015/2/1.

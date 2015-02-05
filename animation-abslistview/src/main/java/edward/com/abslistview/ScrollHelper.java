@@ -7,7 +7,7 @@ import android.widget.AbsListView;
 import java.util.HashSet;
 
 import edward.com.animation.AnimatorManager;
-import edward.com.animation.impl.Effect4View;
+import edward.com.animation.effects.Effect4View;
 
 public class ScrollHelper implements AbsListView.OnScrollListener {
 

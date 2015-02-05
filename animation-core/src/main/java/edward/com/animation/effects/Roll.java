@@ -5,10 +5,6 @@ import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import edward.com.animation.enums.Action;
-import edward.com.animation.impl.Effect4View;
-import edward.com.animation.impl.HasAction;
-
 /**
  * Created by Administrator on 2015/2/2.
  */

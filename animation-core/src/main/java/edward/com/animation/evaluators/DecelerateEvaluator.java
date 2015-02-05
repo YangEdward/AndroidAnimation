@@ -18,7 +18,7 @@ package edward.com.animation.evaluators;
 
 public class DecelerateEvaluator extends BaseEvaluator {
     @Override
-    public Float calculate(float t, float b, float c, float d) {
+    public float calculate(float t, float b, float c, float d) {
         return c*((t=t/d-1)*t*t + 1) + b;
     }
 }

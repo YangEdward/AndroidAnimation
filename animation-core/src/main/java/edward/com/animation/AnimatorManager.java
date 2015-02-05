@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edward.com.animation.effects.Fade;
-import edward.com.animation.impl.Effect4View;
+import edward.com.animation.effects.Effect4View;
 
 public class AnimatorManager {
 

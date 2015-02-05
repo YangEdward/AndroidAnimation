@@ -18,12 +18,18 @@ package edward.com.animation.evaluators;
 
 public class ElasticOvershootEvaluator extends BaseEvaluator{
 
+    private float factor = 0.6f;
+
+    public ElasticOvershootEvaluator() {
+    }
+
+    public ElasticOvershootEvaluator(float factor) {
+        this.factor = factor;
+    }
+
     @Override
-    public Float calculate(float t, float b, float c, float d) {
-        if (t==0) return b;  if ((t/=d)==1) return b+c;
-        float p=d*.3f;
-        float a=c;
-        float s=p/4;
-        return (a*(float)Math.pow(2,-10*t) * (float)Math.sin( (t*d-s)*(2*(float)Math.PI)/p ) + c + b);
+    public float calculate(float t, float b, float c, float d) {
+        float x = t/d;
+        return (float)(c*(Math.pow(2, -10 * x) * Math.sin((x - factor / 4) * (2 * Math.PI) / factor) + 1));
     }
 }

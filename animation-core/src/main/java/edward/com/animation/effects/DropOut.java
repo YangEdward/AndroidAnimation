@@ -6,7 +6,6 @@ import android.animation.TypeEvaluator;
 import android.view.View;
 
 import edward.com.animation.evaluators.BounceOutEvaluator;
-import edward.com.animation.impl.Effect4View;
 
 public class DropOut implements Effect4View {
     private final long duration;

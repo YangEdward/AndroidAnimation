@@ -4,24 +4,18 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-import edward.com.animation.enums.Action;
-import edward.com.animation.enums.Direction;
-import edward.com.animation.impl.Effect4View;
-import edward.com.animation.impl.HasAction;
-import edward.com.animation.impl.HasDirection;
-
-public class Rotate implements Effect4View,HasAction,HasDirection{
+public class Rotate extends HasDirection implements HasAction{
 
     private static final float ROT_MAX = 15.0f;
     private Direction direction;
     private Action action = Action.IN;
 
     public Rotate(){
-
+        super(null);
     }
 
     public Rotate(Direction direction,Action action){
-        this.direction = direction;
+        super(direction);
         this.action = action;
     }
 
@@ -57,7 +51,6 @@ public class Rotate implements Effect4View,HasAction,HasDirection{
 
     }
 
-    @Override
     public void setDirection(Direction direction) {
 
     }

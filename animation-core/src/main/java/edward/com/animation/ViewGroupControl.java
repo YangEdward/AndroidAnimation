@@ -10,7 +10,7 @@ import android.view.animation.TranslateAnimation;
 
 import java.util.HashMap;
 
-import edward.com.animation.impl.Effect4View;
+import edward.com.animation.effects.Effect4View;
 
 
 public class ViewGroupControl {

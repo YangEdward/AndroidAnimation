@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edward.com.animation.effects;
+package edward.com.animation.viewpager;
 
 import android.view.View;
 
-import edward.com.animation.impl.EffectTransformer;
+import edward.com.animation.viewpager.EffectTransformer;
 
-public class CudeOut extends EffectTransformer {
+public class CudeIn extends EffectTransformer {
 
     @Override
     protected void onTransform(View view, float position) {
-        view.setPivotX(position < 0f ? view.getWidth() : 0f);
-        view.setPivotY(view.getHeight() * 0.5f);
-        view.setRotationY(90f * position);
+        // Rotate the fragment on the left or right edge
+        view.setPivotX(position > 0 ? 0 : view.getWidth());
+        view.setPivotY(0);
+        view.setRotationY(-90f * position);
     }
 
     @Override
