@@ -21,6 +21,12 @@ import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import edward.com.animation.evaluators.AccelerateDecelerateEvaluator;
+import edward.com.animation.evaluators.ElasticOvershootEvaluator;
+import edward.com.animation.evaluators.OvershootEvaluator;
+
+import static edward.com.animation.effects.AnimPropertyName.ALPHA;
+
 public class Flip extends HasDirection implements HasAction {
 
     private Action action = Action.IN;
@@ -41,78 +47,78 @@ public class Flip extends HasDirection implements HasAction {
 
     @Override
     protected Animator[] top(View target) {
-        float [] alpha = {0.25f, 0.5f, 0.75f, 1};
-        float [] rotationX = {90, -15, 15, 0};
+        float from = 90;
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                rotationX = new float[]{0,90};
+                to = from;
+                from = 0;
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"rotationX",rotationX),
-        };
+        return generate(target,from,to,AnimPropertyName.ROTATION_X);
     }
 
     @Override
     protected Animator[] left(View target) {
-        float [] alpha = {0.25f, 0.5f, 0.75f, 1};
-        float [] rotationY = {-90, 15, -15, 0};
+        float from = -90;
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                rotationY = new float[]{0,-90};
+                to = from;
+                from = 0;
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"rotationY",rotationY),
-        };
+        return generate(target,from,to,AnimPropertyName.ROTATION_Y);
     }
 
     @Override
     protected Animator[] right(View target) {
-        float [] alpha = {0.25f, 0.5f, 0.75f, 1};
-        float [] rotationY = {90, -15, 15, 0};
+        float from = 90;
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                rotationY = new float[]{0,90};
+                to = from;
+                from = 0;
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"rotationY",rotationY),
-        };
+        return generate(target,from,to,AnimPropertyName.ROTATION_Y);
     }
 
     @Override
     protected Animator[] bottom(View target) {
-        float [] alpha = {0.25f, 0.5f, 0.75f, 1};
-        float [] rotationX = {-90, 15, -15, 0};
+        float from = -90;
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                rotationX = new float[]{0,-90};
+                to = from;
+                from = 0;
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"rotationX",rotationX),
-        };
+        return generate(target,from,to,AnimPropertyName.ROTATION_X);
     }
 
     @Override
     public void setAction(@NonNull Action action) {
         this.action = action;
+    }
+
+    private Animator[] generate(View target,float from,float to,AnimPropertyName value){
+        evaluator = new AccelerateDecelerateEvaluator();
+        return new Animator[]{
+                new AnimatorBuilder(target,duration,action).setAnimator(ALPHA)
+                        .setEvaluator(evaluator)
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration,action).setAnimatorNoAction(value,from,to)
+                        .setEvaluator(new OvershootEvaluator())
+                        .getAnimator()
+        };
     }
 }

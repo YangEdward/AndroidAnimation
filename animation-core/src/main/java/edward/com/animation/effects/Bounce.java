@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
+import edward.com.animation.evaluators.AccelerateDecelerateEvaluator;
 import edward.com.animation.evaluators.BaseEvaluator;
 import edward.com.animation.evaluators.ElasticOvershootEvaluator;
+import edward.com.animation.evaluators.OvershootEvaluator;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
@@ -18,9 +20,7 @@ import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
  */
 public class Bounce extends HasDirection implements HasAction{
 
-    /*Support Action.In*/
     private Action action;
-    private BaseEvaluator evaluator = new ElasticOvershootEvaluator();
 
     public Bounce(){
         super(null);
@@ -29,6 +29,10 @@ public class Bounce extends HasDirection implements HasAction{
     public Bounce(Action action) {
         super(null);
         this.action = action;
+    }
+
+    public Bounce(Direction direction){
+        super(direction);
     }
 
     public Bounce(Action action,Direction direction){
@@ -68,33 +72,74 @@ public class Bounce extends HasDirection implements HasAction{
 
     @Override
     public Animator[] top(View target) {
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target,"translationY",target.getMeasuredHeight(), -30,10,0),
-                ObjectAnimator.ofFloat(target,"alpha",0,1,1,1)
-        };
+        float from = -target.getHeight();
+        float to = 0;
+        switch (action){
+            case IN:
+                break;
+            case OUT:
+                to = from;
+                from = 0;
+                break;
+        }
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_Y);
     }
 
     @Override
     public Animator[] left(View target) {
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target,"translationX",-target.getWidth(),30,-10,0),
-                ObjectAnimator.ofFloat(target,"alpha",0,1,1,1)
-        };
+        float from = -target.getWidth();
+        float to = 0;
+        switch (action){
+            case IN:
+                break;
+            case OUT:
+                to = from;
+                from = 0;
+                break;
+        }
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_X);
     }
 
     @Override
     public Animator[] right(View target) {
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target,"translationX",target.getMeasuredWidth()+target.getWidth(),-30,10,0),
-                ObjectAnimator.ofFloat(target,"alpha",0,1,1,1)
-        };
+        float from = target.getMeasuredWidth()+target.getWidth();
+        float to = 0;
+        switch (action){
+            case IN:
+                break;
+            case OUT:
+                to = from;
+                from = 0;
+                break;
+        }
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_X);
+
     }
 
     @Override
     public Animator[] bottom(View target) {
+        float from = target.getMeasuredHeight();
+        float to = 0;
+        switch (action){
+            case IN:
+                break;
+            case OUT:
+                to = from;
+                from = 0;
+                break;
+        }
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_Y);
+    }
+
+    private Animator[] generate(View target,float from,float to,AnimPropertyName value){
+        evaluator = new OvershootEvaluator();
         return new Animator[]{
-                ObjectAnimator.ofFloat(target,"alpha",0,1,1,1),
-                ObjectAnimator.ofFloat(target,"translationY",-target.getHeight(),30,-10,0)
+                new AnimatorBuilder(target,duration,action).setAnimator(ALPHA)
+                        .setEvaluator(evaluator)
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration,action).setAnimatorNoAction(value,from,to)
+                        .setEvaluator(evaluator)
+                        .getAnimator()
         };
     }
 }

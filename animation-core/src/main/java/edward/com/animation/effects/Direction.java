@@ -5,9 +5,6 @@ import android.view.View;
 
 import edward.com.animation.effects.HasDirection;
 
-/**
- * Created by Edward on 2015/2/1.
- */
 public enum Direction {
     TOP_LEFT{
         @Override

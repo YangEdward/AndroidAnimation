@@ -6,15 +6,17 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Administrator on 2015/2/2.
- */
+import static edward.com.animation.effects.AnimPropertyName.ALPHA;
+
 public class Slide extends HasDirection implements HasAction {
 
-    private Direction direction = Direction.TOP;
     private Action action = Action.IN;
 
-    public Slide(@NonNull Direction direction,@NonNull Action action){
+    public Slide(@NonNull Direction direction) {
+        super(direction);
+    }
+
+    public Slide(@NonNull Action action,@NonNull Direction direction){
         super(direction);
         this.action = action;
     }
@@ -37,102 +39,73 @@ public class Slide extends HasDirection implements HasAction {
 
     @Override
     public Animator[] top(View target) {
-        float [] alpha = {0,1};
-        ViewGroup parent = (ViewGroup)target.getParent();
-        int distance = parent.getHeight() - target.getTop();
-        float [] translationY = {distance,0};
+        float from = -(target.getTop() + target.getHeight());
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                translationY = new float[] {0,-target.getBottom()};
+                from = 0;
+                to = -target.getBottom();
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"translationY",translationY)
-        };
-    }
-
-    @Override
-    public Animator[] topLeft(View target) {
-        return new Animator[0];
-    }
-
-    @Override
-    public Animator[] topRight(View target) {
-        return new Animator[0];
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_Y);
     }
 
     @Override
     public Animator[] left(View target) {
-        float [] alpha = {0,1};
         ViewGroup parent = (ViewGroup)target.getParent();
-        int distance = parent.getWidth() - target.getLeft();
-        float [] translationX = {-distance,0};
+        float from = target.getLeft() - parent.getWidth();
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                translationX = new float[] {0,-target.getRight()};
+                from = 0;
+                to = -target.getRight();
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"translationX",translationX)
-        };
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_X);
     }
 
     @Override
     public Animator[] right(View target) {
-        float [] alpha = {0,1};
         ViewGroup parent = (ViewGroup)target.getParent();
-        int distance = parent.getWidth() - target.getLeft();
-        float [] translationX = {distance,0};
+        float from = parent.getWidth() - target.getLeft();
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                translationX = new float[] {0,distance};
+                to = from;
+                from = 0;
                 break;
         }
-        return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"translationX",translationX)
-        };
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_X);
     }
 
     @Override
     public Animator[] bottom(View target) {
-        float [] alpha = {0,1};
         ViewGroup parent = (ViewGroup)target.getParent();
-        int distance = target.getTop() + target.getHeight();
-        float [] translationY = {-distance,0};
+        float from = parent.getHeight() - target.getTop();
+        float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
-                alpha = new float[]{1,0};
-                distance = parent.getHeight() - target.getTop();
-                translationY = new float[] {0,distance};
+                from = 0;
+                to = parent.getHeight() - target.getTop();
                 break;
         }
+        return generate(target,from,to,AnimPropertyName.TRANSLATION_Y);
+    }
+
+    private Animator[] generate(View target,float from,float to,AnimPropertyName value){
         return new Animator[]{
-                ObjectAnimator.ofFloat(target, "alpha", alpha),
-                ObjectAnimator.ofFloat(target,"translationY",translationY)
+                new AnimatorBuilder(target,duration,action).setAnimator(ALPHA)
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration,action).setAnimatorNoAction(value,from,to)
+                        .getAnimator()
         };
-    }
-
-    @Override
-    public Animator[] bottomLeft(View target) {
-        return new Animator[0];
-    }
-
-    @Override
-    public Animator[] bottomRight(View target) {
-        return new Animator[0];
     }
 }

@@ -11,7 +11,9 @@ public enum AnimPropertyName {
     TRANSLATION_Y("translationY"),
     ROTATION("rotation"),
     ROTATION_X("rotationX"),
-    ROTATION_Y("rotationY");
+    ROTATION_Y("rotationY"),
+    PIVOT_X("pivotX"),
+    PIVOT_Y("pivotY");
 
     private String value;
     AnimPropertyName(String value){

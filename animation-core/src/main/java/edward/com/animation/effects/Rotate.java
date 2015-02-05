@@ -4,16 +4,28 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
+import static edward.com.animation.effects.AnimPropertyName.ALPHA;
+
 public class Rotate extends HasDirection implements HasAction{
 
-    private static final float ROT_MAX = 15.0f;
+    private float pivotX;
+    private float pivotY;
     private Action action = Action.IN;
 
     public Rotate(){
         super(null);
     }
 
-    public Rotate(Direction direction,Action action){
+    public Rotate(Action action) {
+        super(null);
+        this.action = action;
+    }
+
+    public Rotate(Direction direction) {
+        super(direction);
+    }
+
+    public Rotate(Action action,Direction direction){
         super(direction);
         this.action = action;
     }
@@ -27,22 +39,10 @@ public class Rotate extends HasDirection implements HasAction{
     }
 
     private Animator[] rotate(View target){
-        int from = 0,to = 1;
-        float fromRot = -200,toRot = 0;
-        switch (action){
-            case IN:
-                break;
-            case OUT:
-                from = 1;
-                to = 0;
-                fromRot = 0;
-                toRot = 200;
-                break;
-        }
-        return new Animator[]{
-            ObjectAnimator.ofFloat(target, "rotation", fromRot, toRot),
-            ObjectAnimator.ofFloat(target, "alpha", from, to)
-        };
+        pivotX = target.getWidth()/2;
+        pivotY = target.getHeight()/2;
+        float from = 200,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
@@ -56,117 +56,83 @@ public class Rotate extends HasDirection implements HasAction{
 
     @Override
     public Animator[] top(View target) {
-        return new Animator[0];
+        pivotX = target.getLeft();
+        pivotY = target.getTop();
+        float from = -90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] topLeft(View target) {
-        float x = target.getPaddingLeft();
-        float y = target.getHeight() - target.getPaddingBottom();
-        int from = 0,to = 1;
-        float fromRot = 90,toRot = 0;
-        switch (action){
-            case IN:
-                break;
-            case OUT:
-                from = 1;
-                to = 0;
-                fromRot = 0;
-                toRot = -90;
-                break;
-        }
-        return new Animator[]{
-            ObjectAnimator.ofFloat(target, "rotation", fromRot, toRot),
-            ObjectAnimator.ofFloat(target, "alpha", from, to),
-            ObjectAnimator.ofFloat(target, "pivotX", x, x),
-            ObjectAnimator.ofFloat(target, "pivotY", y, y)
-        };
+        pivotX = target.getLeft();
+        pivotY = target.getTop();
+        float from = 90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] topRight(View target) {
-        float x = target.getWidth() - target.getPaddingRight();
-        float y = target.getHeight() - target.getPaddingBottom();
-        int from = 0,to = 1;
-        float fromRot = -90,toRot = 0;
-        switch (action){
-            case IN:
-                break;
-            case OUT:
-                from = 1;
-                to = 0;
-                fromRot = 0;
-                toRot = 90;
-                break;
-        }
-        return new Animator[]{
-            ObjectAnimator.ofFloat(target, "rotation", fromRot, toRot),
-            ObjectAnimator.ofFloat(target, "alpha", from, to),
-            ObjectAnimator.ofFloat(target, "pivotX", x, x),
-            ObjectAnimator.ofFloat(target, "pivotY", y, y)
-        };
+        pivotX = target.getRight();
+        pivotY = target.getTop();
+        float from = 90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] left(View target) {
-        return new Animator[0];
+        pivotX = target.getLeft();
+        pivotY = target.getBottom();
+        float from = -90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] right(View target) {
-        return new Animator[0];
+        pivotX = target.getRight();
+        pivotY = target.getTop();
+        float from = -90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] bottom(View target) {
-        return new Animator[0];
+        pivotX = target.getRight();
+        pivotY = target.getBottom();
+        float from = -90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] bottomLeft(View target) {
-        float x = target.getPaddingLeft();
-        float y = target.getHeight() - target.getPaddingBottom();
-        int from = 0,to = 1;
-        float fromRot = -90,toRot = 0;
-        switch (action){
-            case IN:
-                break;
-            case OUT:
-                from = 1;
-                to = 0;
-                fromRot = 0;
-                toRot = 90;
-                break;
-        }
-        return new Animator[]{
-            ObjectAnimator.ofFloat(target, "rotation", fromRot, toRot),
-            ObjectAnimator.ofFloat(target, "alpha", from, to),
-            ObjectAnimator.ofFloat(target, "pivotX", x, x),
-            ObjectAnimator.ofFloat(target, "pivotY", y, y)
-        };
+        pivotX = target.getLeft();
+        pivotY = target.getBottom();
+        float from = 90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
     }
 
     @Override
     public Animator[] bottomRight(View target) {
-        float x = target.getWidth() - target.getPaddingRight();
-        float y = target.getHeight() - target.getPaddingBottom();
-        int from = 0,to = 1;
-        float fromRot = 90,toRot = 0;
-        switch (action){
-            case IN:
-                break;
-            case OUT:
-                from = 1;
-                to = 0;
-                fromRot = 0;
-                toRot = -90;
-                break;
+        pivotX = target.getRight();
+        pivotY = target.getBottom();
+        float from = 90,to = 0;
+        return generate(target,from,to,AnimPropertyName.ROTATION);
+    }
+
+    private Animator[] generate(View target,float from,float to,AnimPropertyName value){
+        if(action == Action.OUT){
+            float temp = to;
+            to = from;
+            from = temp;
         }
         return new Animator[]{
-            ObjectAnimator.ofFloat(target, "rotation", fromRot, toRot),
-            ObjectAnimator.ofFloat(target, "alpha", from, to),
-            ObjectAnimator.ofFloat(target, "pivotX", x, x),
-            ObjectAnimator.ofFloat(target, "pivotY", y, y)
+                new AnimatorBuilder(target,duration,action).setAnimator(ALPHA)
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration,action).setAnimatorNoAction(value,from,to)
+                        .getAnimator(),
+                new AnimatorBuilder(target).setAnimatorNoAction(AnimPropertyName.PIVOT_X,pivotX,pivotX)
+                        .getAnimator(),
+                new AnimatorBuilder(target).setAnimatorNoAction(AnimPropertyName.PIVOT_Y,pivotY,pivotY)
+                        .getAnimator()
         };
     }
 }

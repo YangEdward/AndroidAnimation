@@ -1,12 +1,16 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
+import android.support.annotation.NonNull;
 import android.view.View;
+
+import edward.com.animation.evaluators.BaseEvaluator;
 
 public abstract class HasDirection implements Effect4View{
 
     protected Direction direction;
     protected long duration = AnimatorBuilder.DEFAULT_DURATION;
+    protected BaseEvaluator evaluator;
 
     protected HasDirection(Direction direction) {
         this.direction = direction;
@@ -16,6 +20,11 @@ public abstract class HasDirection implements Effect4View{
         this.direction = direction;
     };
 
+    public void setEvaluator(@NonNull BaseEvaluator evaluator) {
+        this.evaluator = evaluator;
+    }
+
+    @Override
     public Effect4View setDuration(long duration) {
         this.duration = duration;
         return this;
