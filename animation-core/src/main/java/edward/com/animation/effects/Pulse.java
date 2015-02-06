@@ -20,12 +20,12 @@ public class Pulse extends NoDirection {
     @Override
     public Animator[] getAnimators(@NonNull View target) {
         return new Animator[]{new AnimatorBuilder(target,duration).
-                setAnimator(AnimPropertyName.SCALE_X,1,1.1f).
+                setAnimatorNoAction(AnimPropertyName.SCALE_X,1,1.1f).
                 setRepeatCount(repeatCount).
                 setRepeatMode(ValueAnimator.REVERSE).
                 getAnimator(),
                 new AnimatorBuilder(target,duration).
-                        setAnimator(AnimPropertyName.SCALE_Y,1,1.1f).
+                        setAnimatorNoAction(AnimPropertyName.SCALE_Y,1,1.1f).
                         setRepeatCount(repeatCount).
                         setRepeatMode(ValueAnimator.REVERSE).
                         getAnimator(),

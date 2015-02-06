@@ -1,9 +1,13 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
 import android.view.View;
+
+import edward.com.animation.evaluators.WaveEvaluator;
+
+import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
+import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
 
 public class RubberBand extends NoDirection {
 
@@ -17,8 +21,12 @@ public class RubberBand extends NoDirection {
     @Override
     public Animator[] getAnimators(@NonNull View target) {
         return new Animator[]{
-                ObjectAnimator.ofFloat(target, "scaleX", 1, 1.25f, 0.75f, 1.15f, 1),
-                ObjectAnimator.ofFloat(target, "scaleY", 1, 0.75f, 1.25f, 0.85f, 1)
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(SCALE_X,1,1)
+                        .setEvaluator(new WaveEvaluator(0.3f,3))
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(SCALE_Y,1,1)
+                        .setEvaluator(new WaveEvaluator(-0.3f,3))
+                        .getAnimator()
         };
     }
 

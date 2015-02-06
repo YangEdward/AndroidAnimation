@@ -5,9 +5,12 @@ import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-/**
- * Created by Edward on 2015/2/1.
- */
+import edward.com.animation.evaluators.WaveEvaluator;
+
+import static edward.com.animation.effects.AnimPropertyName.PIVOT_X;
+import static edward.com.animation.effects.AnimPropertyName.PIVOT_Y;
+import static edward.com.animation.effects.AnimPropertyName.ROTATION;
+
 public class Swing extends NoDirection{
     public Swing() {
     }
@@ -19,7 +22,9 @@ public class Swing extends NoDirection{
     @Override
     public Animator[] getAnimators(@NonNull View target) {
         return new Animator[]{
-                ObjectAnimator.ofFloat(target, "rotation", 0, 10, -10, 6, -6, 3, -3, 0)
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(ROTATION,0,0)
+                        .setEvaluator(new WaveEvaluator(10,4))
+                        .getAnimator()
         };
     }
 

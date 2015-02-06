@@ -25,12 +25,12 @@ public class WaveEvaluator extends BaseEvaluator {
     @Override
     public float calculate(float time, float startValue, float offset, float duration) {
         if(offset != 0){
-            amplitude = offset;
+            amplitude = -offset;
             startPiValue = 0.5f;
         }
-        float amp = accelerateEvaluator.calculate(time,amplitude,-offset,duration);
+        float amp = accelerateEvaluator.calculate(time,amplitude,0,duration);
         float piValue = accelerateEvaluator.calculate(time,(float)Math.PI*startPiValue,
                 (float)Math.PI*endPiValue,duration);
-        return (float)(amp*Math.sin(piValue));
+        return (float)(amp*Math.sin(piValue)) + startValue + offset;
     }
 }

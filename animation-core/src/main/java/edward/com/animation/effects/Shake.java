@@ -1,15 +1,20 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.support.annotation.NonNull;
 import android.view.View;
+
+import edward.com.animation.evaluators.WaveEvaluator;
+
+import static edward.com.animation.effects.AnimPropertyName.TRANSLATION_X;
 
 public class Shake extends NoDirection{
     @Override
     public Animator[] getAnimators(@NonNull View target) {
         return new Animator[]{
-                ObjectAnimator.ofFloat(target, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0)
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(TRANSLATION_X,0,0)
+                        .setEvaluator(new WaveEvaluator(25,8))
+                        .getAnimator()
         };
     }
 

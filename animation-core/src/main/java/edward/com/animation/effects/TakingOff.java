@@ -17,9 +17,6 @@ import static edward.com.animation.effects.AnimPropertyName.ROTATION;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
 
-/**
- * Created by Administrator on 2015/2/3.
- */
 public class TakingOff extends NoDirection {
 
     public TakingOff() {
@@ -42,13 +39,6 @@ public class TakingOff extends NoDirection {
                 new AnimatorBuilder(target,duration).setAnimatorNoAction(ALPHA, 1, 0)
                         .setEvaluator(evaluator)
                         .getAnimator()
-            /*ObjectAnimator.ofFloat(target, "scaleX", 1f, 1.5f),
-            ObjectAnimator.ofFloat(target, "scaleY", 1f, 1.5f),
-            ObjectAnimator.ofFloat(target, "alpha", 1, 0)*/
         };
-        /*for(ObjectAnimator animator:animators){
-            animator.setEvaluator(evaluator);
-        }
-        return animators;*/
     }
 }
