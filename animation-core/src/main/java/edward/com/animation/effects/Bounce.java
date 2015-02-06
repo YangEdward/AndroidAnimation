@@ -1,12 +1,9 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.view.View;
 
-import edward.com.animation.evaluators.AccelerateDecelerateEvaluator;
-import edward.com.animation.evaluators.BaseEvaluator;
-import edward.com.animation.evaluators.ElasticOvershootEvaluator;
 import edward.com.animation.evaluators.OvershootEvaluator;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
@@ -21,6 +18,7 @@ import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
 public class Bounce extends EffectHasDirection implements HasAction{
 
     private Action action;
+    private final static int repeatCount = 3;
 
     public Bounce(){
         super(null);
@@ -43,7 +41,12 @@ public class Bounce extends EffectHasDirection implements HasAction{
     @Override
     public Animator[] getAnimators(View target) {
         if(action == null){
-            return new Animator[]{ObjectAnimator.ofFloat(target, "translationY", 0, 0, -30, 0, -15, 0, 0)};
+            return new Animator[]{ new AnimatorBuilder(target,duration).
+                    setAnimatorNoAction(AnimPropertyName.TRANSLATION_Y,0,-30f).
+                    setRepeatCount(repeatCount).
+                    setRepeatMode(ValueAnimator.REVERSE).
+                    getAnimator()
+            };
         }
         if (direction == null){
             return bounce(target);

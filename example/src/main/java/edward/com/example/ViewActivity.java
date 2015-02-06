@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edward.com.animation.AnimatorManager;
 import edward.com.animation.effects.*;
@@ -32,21 +33,21 @@ public class ViewActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.start1:
-                AnimatorManager.with(text1).putEffect(new Pulse().setDuration(2000)).animate();
+                AnimatorManager.with(text1).putEffect(new Slide(Direction.RIGHT).setDuration(2000)).animate();
                 break;
             case R.id.start2:
-                AnimatorManager.with(text2).putEffect(new Landing().setDuration(2000)).animate();
-                /*AnimatorManager.with(text2).putEffect(new Rotate(action).setDuration(2500)).animate();
-                Toast.makeText(ViewActivity.this,directions[i].toString(),Toast.LENGTH_LONG).show();
+                //AnimatorManager.with(text2).putEffect(new Roll(Action.OUT).setDuration(2000)).animate();
+                AnimatorManager.with(text2).putEffect(new Roll(action,directions[i]).setDuration(2500)).animate();
+                Toast.makeText(ViewActivity.this, directions[i].toString(), Toast.LENGTH_LONG).show();
                 i++;
-                if(i == 1){
+                if(i == 8){
                     i = 0;
                     if(action == Action.IN){
                         action = Action.OUT;
                     }else{
                         action = Action.IN;
                     }
-                }*/
+                }
                 break;
         }
     }

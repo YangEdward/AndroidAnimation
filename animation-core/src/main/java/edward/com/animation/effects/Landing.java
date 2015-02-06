@@ -1,8 +1,6 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.animation.TypeEvaluator;
 import android.support.annotation.NonNull;
 import android.view.View;
 
@@ -12,7 +10,6 @@ import edward.com.animation.evaluators.DecelerateEvaluator;
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
-import static edward.com.animation.effects.AnimPropertyName.TRANSLATION_Y;
 
 public class Landing extends NoDirection {
 
@@ -27,7 +24,7 @@ public class Landing extends NoDirection {
     @Override
     public Animator[] getAnimators(@NonNull View target) {
         BaseEvaluator evaluator = new DecelerateEvaluator();
-        return new ObjectAnimator[]{
+        return new Animator[]{
                 new AnimatorBuilder(target,duration).setAnimator(ALPHA)
                         .setEvaluator(evaluator)
                         .getAnimator(),

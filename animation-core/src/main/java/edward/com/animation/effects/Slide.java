@@ -6,6 +6,11 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edward.com.animation.evaluators.AccelerateEvaluator;
+import edward.com.animation.evaluators.ForwardEvaluator;
+import edward.com.animation.evaluators.InertiaEvaluator;
+import edward.com.animation.evaluators.LinearEvaluator;
+
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
 public class Slide extends EffectHasDirection implements HasAction {

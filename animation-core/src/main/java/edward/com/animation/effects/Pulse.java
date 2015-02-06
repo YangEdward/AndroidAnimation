@@ -1,7 +1,6 @@
 package edward.com.animation.effects;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.support.annotation.NonNull;
 import android.view.View;
