@@ -10,7 +10,7 @@ import static edward.com.animation.effects.AnimPropertyName.*;
  * Now just for ViewPager,Fade In and Fade Out
  * Time 2015-2-1
  * */
-public class Fade extends HasDirection implements HasAction{
+public class Fade extends EffectHasDirection implements HasAction{
 
     private Action action = Action.IN;
 

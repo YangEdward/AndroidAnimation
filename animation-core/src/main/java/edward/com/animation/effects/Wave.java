@@ -2,11 +2,16 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
-/**
- * Created by Edward on 2015/2/1.
- */
+import edward.com.animation.evaluators.WaveEvaluator;
+
+import static edward.com.animation.effects.AnimPropertyName.PIVOT_X;
+import static edward.com.animation.effects.AnimPropertyName.PIVOT_Y;
+import static edward.com.animation.effects.AnimPropertyName.ROTATION;
+import static edward.com.animation.effects.AnimPropertyName.TRANSLATION_X;
+
 public class Wave extends NoDirection {
     public Wave() {
     }
@@ -16,14 +21,18 @@ public class Wave extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         float x = (target.getWidth() - target.getPaddingLeft() - target.getPaddingRight())/2
                 + target.getPaddingLeft();
         float y = target.getHeight() - target.getPaddingBottom();
         return new Animator[]{
-                ObjectAnimator.ofFloat(target, "rotation", 12, -12, 3, -3, 0),
-                ObjectAnimator.ofFloat(target, "pivotX", x, x,x,x,x),
-                ObjectAnimator.ofFloat(target, "pivotY", y, y,y,y,y)
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(ROTATION,12,0)
+                        .setEvaluator(new WaveEvaluator(12,4))
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(PIVOT_X, x, x)
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(PIVOT_Y, y, y)
+                        .getAnimator(),
         };
     }
 

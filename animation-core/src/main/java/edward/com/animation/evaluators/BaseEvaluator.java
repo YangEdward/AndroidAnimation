@@ -63,6 +63,6 @@ public abstract class BaseEvaluator implements TypeEvaluator<Number>{
         return result;
     }
 
-    public abstract float calculate(float t, float b, float c, float d);
+    public abstract float calculate(float time, float startValue, float offset, float duration);
 
 }

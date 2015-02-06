@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 
 import edward.com.animation.evaluators.BaseEvaluator;
 
-public abstract class HasDirection implements Effect4View{
+public abstract class EffectHasDirection implements Effect4View{
 
     protected Direction direction;
     protected long duration = AnimatorBuilder.DEFAULT_DURATION;
     protected BaseEvaluator evaluator;
     protected ViewGroup parent;
 
-    protected HasDirection(Direction direction) {
+    protected EffectHasDirection(Direction direction) {
         this.direction = direction;
     }
 
@@ -22,12 +22,11 @@ public abstract class HasDirection implements Effect4View{
         this.direction = direction;
     };
 
-    public void setEvaluator(@NonNull BaseEvaluator evaluator) {
+    protected void setEvaluator(@NonNull BaseEvaluator evaluator) {
         this.evaluator = evaluator;
     }
 
-    @Override
-    public Effect4View setDuration(long duration) {
+    public EffectHasDirection setDuration(long duration) {
         this.duration = duration;
         return this;
     }
@@ -37,7 +36,7 @@ public abstract class HasDirection implements Effect4View{
         return duration;
     }
 
-    public Effect4View setParent(ViewGroup parent) {
+    public EffectHasDirection setParent(ViewGroup parent) {
         this.parent = parent;
         return this;
     }

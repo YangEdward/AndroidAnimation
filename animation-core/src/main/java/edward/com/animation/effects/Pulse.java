@@ -3,6 +3,7 @@ package edward.com.animation.effects;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 public class Pulse extends NoDirection {
@@ -17,7 +18,7 @@ public class Pulse extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         return new Animator[]{new AnimatorBuilder(target,duration).
                 setAnimator(AnimPropertyName.SCALE_X,1,1.1f).
                 setRepeatCount(repeatCount).

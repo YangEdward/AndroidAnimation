@@ -2,14 +2,13 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.animation.TypeEvaluator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import edward.com.animation.evaluators.BaseEvaluator;
 import edward.com.animation.evaluators.BounceOutEvaluator;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
-import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
 import static edward.com.animation.effects.AnimPropertyName.TRANSLATION_Y;
 
 public class DropOut extends NoDirection {
@@ -21,7 +20,7 @@ public class DropOut extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         BaseEvaluator evaluator = new BounceOutEvaluator();
         int distance = target.getTop() + target.getHeight();
         return new ObjectAnimator[]{

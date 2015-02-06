@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.animation.Interpolator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import edward.com.animation.effects.Fade;
 import edward.com.animation.effects.Effect4View;
 
 public class AnimatorManager {
@@ -24,8 +24,6 @@ public class AnimatorManager {
     private AnimatorManager(@NonNull View target){
         this.target = target;
         animatorSet = new AnimatorSet();
-        /*Effect4View effect = new Fade();
-        putEffect(effect);*/
     }
 
     public static AnimatorManager with(@NonNull View target){
@@ -35,17 +33,23 @@ public class AnimatorManager {
     public AnimatorManager putEffect(@NonNull Effect4View effect){
         if(!isContain(effect)){
             effects.add(effect);
-            for (Animator animator : effect.getAnimators(target)){
-                mAnimators.add(animator);
+            mAnimators.addAll(Arrays.asList(effect.getAnimators(target)));
+        }
+        return this;
+    }
+
+    public AnimatorManager putEffects(@NonNull List<Effect4View> effects){
+        for (Effect4View effect : effects){
+            if(!isContain(effect)){
+                effects.add(effect);
+                mAnimators.addAll(Arrays.asList(effect.getAnimators(target)));
             }
         }
         return this;
     }
 
     public AnimatorManager putAnimators(@NonNull Animator[] animators){
-        for (Animator animator : animators) {
-            mAnimators.add(animator);
-        }
+        mAnimators.addAll(Arrays.asList(animators));
         return this;
     }
 
@@ -84,7 +88,7 @@ public class AnimatorManager {
         target.setRotationX(0);
         target.setPivotX(target.getMeasuredWidth() / 2.0f);
         target.setPivotY(target.getMeasuredHeight() / 2.0f);
-    };
+    }
 
     private void prepare(){
         animatorSet.playTogether(mAnimators);

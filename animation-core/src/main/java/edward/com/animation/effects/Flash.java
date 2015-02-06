@@ -2,6 +2,7 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 public class Flash extends NoDirection{
@@ -16,7 +17,7 @@ public class Flash extends NoDirection{
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         return new Animator[]{new AnimatorBuilder(target,duration).
                 setAnimator(AnimPropertyName.ALPHA).
                 setRepeatCount(repeatCount).

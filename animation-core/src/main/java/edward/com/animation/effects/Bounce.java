@@ -18,7 +18,7 @@ import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
  * Time 2015-2-1
  * Created by Edward on 2015/2/1.
  */
-public class Bounce extends HasDirection implements HasAction{
+public class Bounce extends EffectHasDirection implements HasAction{
 
     private Action action;
 
@@ -52,6 +52,7 @@ public class Bounce extends HasDirection implements HasAction{
     }
 
     private Animator[] bounce(View target){
+        setEvaluator(new OvershootEvaluator());
         return new Animator[]{
                 new AnimatorBuilder(target,duration,action).setAnimator(ALPHA)
                         .setEvaluator(evaluator)

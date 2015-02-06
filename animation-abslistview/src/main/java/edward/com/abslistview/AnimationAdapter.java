@@ -27,7 +27,7 @@ import android.widget.BaseAdapter;
 
 import edward.com.abslistview.util.AnimatorUtil;
 import edward.com.abslistview.util.ListViewWrapper;
-import edward.com.animation.effects.Effect4View;
+import edward.com.animation.effects.EffectHasDirection;
 
 /**
  * A {@link BaseAdapterDecorator} class which applies multiple {@link android.animation.Animator}s at once to views when they are first shown. The Animators applied include the animations specified
@@ -35,17 +35,12 @@ import edward.com.animation.effects.Effect4View;
  */
 public class AnimationAdapter extends BaseAdapterDecorator {
 
-    private Effect4View effect;
+    private EffectHasDirection effect;
     private ScrollHelper helper;
     /**
-     * Saved instance state key for the ViewAniamt
+     * Saved instance state key for the ViewAnimator
      */
-    private static final String SAVEDINSTANCESTATE_VIEWANIMATOR = "savedinstancestate_viewanimator";
-
-    /**
-     * Alpha property
-     */
-    private static final String ALPHA = "alpha";
+    private static final String SAVED_INSTANCE_STATE_VIEW_ANIMATOR = "saved_instance_state_view_animator";
 
     /**
      * The ViewAnimator responsible for animating the Views.
@@ -74,7 +69,7 @@ public class AnimationAdapter extends BaseAdapterDecorator {
      *
      * @param baseAdapter the BaseAdapter to wrap.
      */
-    public AnimationAdapter(@NonNull final BaseAdapter baseAdapter,@NonNull Effect4View effect) {
+    public AnimationAdapter(@NonNull final BaseAdapter baseAdapter,@NonNull EffectHasDirection effect) {
         super(baseAdapter);
         this.effect = effect;
         mGridViewPossiblyMeasuring = true;
@@ -141,8 +136,7 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         }
 
         View itemView = super.getView(position, convertView, parent);
-
-        if (mIsRootAdapter) {
+        if (mIsRootAdapter && !(helper != null && helper.isScrolling())) {
             animateViewIfNecessary(position, itemView, parent);
         }
         return itemView;
@@ -169,23 +163,37 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         }
 
         Animator[] childAnimators;
+
         if (getDecoratedBaseAdapter() instanceof AnimationAdapter) {
-            childAnimators = ((AnimationAdapter) getDecoratedBaseAdapter()).getAnimators(parent, view);
+            AnimationAdapter animationAdapter = ((AnimationAdapter) getDecoratedBaseAdapter());
+            childAnimators = animationAdapter.getAnimators(parent, view);
+            if(animationAdapter.getHelper() != null){
+                addOldHelperEffectsToNewHelper(animationAdapter.getEffects());
+            }
         } else {
             childAnimators = new Animator[0];
         }
+        setChildDuration(childAnimators);
+        Animator[] animators = getAnimators(parent, view);
+        Animator[] concatAnimators = AnimatorUtil.concatAnimators(childAnimators, animators);
+        mViewAnimator.animateViewIfNecessary(position, view, concatAnimators);
+    }
+
+    private void addOldHelperEffectsToNewHelper(EffectHasDirection effectHasDirection){
+        if(helper == null){
+            addScrollHelper();
+        }
+        helper.addEffect(effectHasDirection);
+    }
+
+    private void setChildDuration(Animator[] childAnimators){
         if (childAnimators.length != 0){
             long duration = getDuration();
             for (Animator animator : childAnimators){
                 animator.setDuration(duration);
             }
         }
-        Animator[] animators = getAnimators(parent, view);
-        //Animator alphaAnimator = ObjectAnimator.ofFloat(view, ALPHA, 0, 1);
-        Animator[] concatAnimators = AnimatorUtil.concatAnimators(childAnimators, animators);
-        mViewAnimator.animateViewIfNecessary(position, view, concatAnimators);
     }
-
     /**
      * Returns the Animators to apply to the views. In addition to the returned Animators, an alpha transition will be applied to the view.
      *
@@ -194,8 +202,14 @@ public class AnimationAdapter extends BaseAdapterDecorator {
      */
     @NonNull
     public Animator[] getAnimators(@NonNull ViewGroup parent, @NonNull View view){
+        effect.setParent(parent);
         return effect.getAnimators(view);
-    };
+    }
+
+    @NonNull
+    public EffectHasDirection getEffects(){
+        return effect;
+    }
 
     public long getDuration(){
         return effect.getDuration();
@@ -204,6 +218,9 @@ public class AnimationAdapter extends BaseAdapterDecorator {
     public void addScrollHelper() {
         helper = new ScrollHelper();
         helper.setEffect(effect);
+        if (getListViewWrapper() == null) {
+            throw new IllegalStateException("Call setAbsListView() on this AnimationAdapter first!");
+        }
         ((AbsListView)getListViewWrapper().getListView())
                 .setOnScrollListener(helper);
     }
@@ -220,7 +237,7 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         Bundle bundle = new Bundle();
 
         if (mViewAnimator != null) {
-            bundle.putParcelable(SAVEDINSTANCESTATE_VIEWANIMATOR, mViewAnimator.onSaveInstanceState());
+            bundle.putParcelable(SAVED_INSTANCE_STATE_VIEW_ANIMATOR, mViewAnimator.onSaveInstanceState());
         }
 
         return bundle;
@@ -235,7 +252,7 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         if (parcelable instanceof Bundle) {
             Bundle bundle = (Bundle) parcelable;
             if (mViewAnimator != null) {
-                mViewAnimator.onRestoreInstanceState(bundle.getParcelable(SAVEDINSTANCESTATE_VIEWANIMATOR));
+                mViewAnimator.onRestoreInstanceState(bundle.getParcelable(SAVED_INSTANCE_STATE_VIEW_ANIMATOR));
             }
         }
     }

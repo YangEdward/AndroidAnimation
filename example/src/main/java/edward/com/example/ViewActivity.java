@@ -9,14 +9,12 @@ import android.widget.Toast;
 
 import edward.com.animation.AnimatorManager;
 import edward.com.animation.effects.Action;
-import edward.com.animation.effects.Bounce;
 import edward.com.animation.effects.Direction;
-import edward.com.animation.effects.Fade;
 import edward.com.animation.effects.Flash;
-import edward.com.animation.effects.Flip;
 import edward.com.animation.effects.Rotate;
-import edward.com.animation.effects.Slide;
-import edward.com.animation.effects.Zoom;
+import edward.com.animation.effects.TakingOff;
+import edward.com.animation.effects.Wave;
+import edward.com.animation.effects.Wobble;
 
 public class ViewActivity extends Activity implements View.OnClickListener {
     private TextView text1;
@@ -41,10 +39,11 @@ public class ViewActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.start1:
-                AnimatorManager.with(text1).putEffect(new Flash().setDuration(300)).animate();
+                AnimatorManager.with(text1).putEffect(new TakingOff().setDuration(2000)).animate();
                 break;
             case R.id.start2:
-                AnimatorManager.with(text2).putEffect(new Rotate(action).setDuration(2500)).animate();
+                AnimatorManager.with(text2).putEffect(new Wave().setDuration(2000)).animate();
+                /*AnimatorManager.with(text2).putEffect(new Rotate(action).setDuration(2500)).animate();
                 Toast.makeText(ViewActivity.this,directions[i].toString(),Toast.LENGTH_LONG).show();
                 i++;
                 if(i == 1){
@@ -54,7 +53,7 @@ public class ViewActivity extends Activity implements View.OnClickListener {
                     }else{
                         action = Action.IN;
                     }
-                }
+                }*/
                 break;
         }
     }

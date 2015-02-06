@@ -2,9 +2,6 @@ package edward.com.animation.interpolators;
 
 import android.view.animation.Interpolator;
 
-/**
- * Created by Administrator on 2015/2/3.
- */
 public class CubicHermiteInterpolator implements Interpolator {
 
     private final float startValue = 0;

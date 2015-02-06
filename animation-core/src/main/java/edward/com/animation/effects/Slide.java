@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
-public class Slide extends HasDirection implements HasAction {
+public class Slide extends EffectHasDirection implements HasAction {
 
     private Action action = Action.IN;
 
@@ -22,7 +22,7 @@ public class Slide extends HasDirection implements HasAction {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         return direction.getAnimators(target,this);
     }
 

@@ -4,10 +4,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import edward.com.animation.AnimatorManager;
 import edward.com.animation.effects.Effect4View;
+import edward.com.animation.effects.EffectHasDirection;
 
 public class ScrollHelper implements AbsListView.OnScrollListener {
 
@@ -24,9 +27,13 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
     private boolean mIsFlingEvent;
     private boolean mSimulateGridWithList;
     private final HashSet<Integer> mAlreadyAnimatedItems = new HashSet<>();
-    private Effect4View mEffect = null;
+    private List<Effect4View> effects = new ArrayList<>();
     //public static final int DURATION = 600;
     private AbsListView.OnScrollListener mAdditionalOnScrollListener;
+
+    public ScrollHelper() {
+        effects.clear();
+    }
 
     public void setOnScrollListener(AbsListView.OnScrollListener l) {
         // hijack the scroll listener setter and have this list also notify the additional listener
@@ -153,18 +160,27 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
         }
     }
 
-    public void setEffect(Effect4View effect) {
-        mEffect = effect;
+    public void setEffect(EffectHasDirection effect) {
+        effects.clear();
+        addEffect(effect);
+    }
+
+    public void addEffect(EffectHasDirection effect) {
+        effects.add(effect);
     }
 
     private void doAnimationImpl(View item, int position, int scrollDirection) {
         /*scrollDirection = scrollDirection > 0 ? 1 : -1;*/
         AnimatorManager.with(item)
-                .putEffect(mEffect)
+                .putEffects(effects)
                 .animate();
         /*mEffect.initView(item, position, scrollDirection);
         mEffect.setupAnimation(item, position, scrollDirection, animator);
         animator.start();*/
+    }
+
+    public boolean isScrolling(){
+        return mIsScrolling;
     }
 
     public void setShouldOnlyAnimateNewItems(boolean onlyAnimateNew) {

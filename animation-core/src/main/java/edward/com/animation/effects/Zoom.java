@@ -15,7 +15,7 @@ import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
 
-public class Zoom extends HasDirection implements HasAction{
+public class Zoom extends EffectHasDirection implements HasAction{
     private Action action = Action.IN;
 
     public Zoom(){

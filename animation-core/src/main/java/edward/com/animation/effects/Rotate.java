@@ -2,11 +2,12 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
-public class Rotate extends HasDirection implements HasAction{
+public class Rotate extends EffectHasDirection implements HasAction{
 
     private float pivotX;
     private float pivotY;
@@ -31,7 +32,7 @@ public class Rotate extends HasDirection implements HasAction{
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         if (direction == null){
             return rotate(target);
         }
@@ -46,7 +47,7 @@ public class Rotate extends HasDirection implements HasAction{
     }
 
     @Override
-    public void setAction(Action action) {
+    public void setAction(@NonNull Action action) {
         this.action = action;
     }
 

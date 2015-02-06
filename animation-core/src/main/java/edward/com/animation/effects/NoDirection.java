@@ -1,8 +1,5 @@
 package edward.com.animation.effects;
 
-/**
- * Created by Administrator on 15-2-5.
- */
 public abstract class NoDirection implements Effect4View {
 
     protected long duration = AnimatorBuilder.DEFAULT_DURATION;
@@ -15,8 +12,7 @@ public abstract class NoDirection implements Effect4View {
         this.duration = duration;
     }
 
-    @Override
-    public Effect4View setDuration(long duration) {
+    public NoDirection setDuration(long duration) {
         this.duration = duration;
         return this;
     }

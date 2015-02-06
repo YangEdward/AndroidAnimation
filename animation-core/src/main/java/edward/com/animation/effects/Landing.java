@@ -3,6 +3,7 @@ package edward.com.animation.effects;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import edward.com.animation.evaluators.BaseEvaluator;
@@ -24,7 +25,7 @@ public class Landing extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         BaseEvaluator evaluator = new DecelerateEvaluator();
         return new ObjectAnimator[]{
                 new AnimatorBuilder(target,duration).setAnimator(ALPHA)

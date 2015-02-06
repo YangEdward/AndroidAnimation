@@ -3,9 +3,6 @@ package edward.com.animation.interpolators;
 import android.graphics.PointF;
 import android.view.animation.Interpolator;
 
-/**
- * Created by Administrator on 2015/2/3.
- */
 public class CubicBezierInterpolator implements Interpolator{
     protected PointF start;
     protected PointF end;

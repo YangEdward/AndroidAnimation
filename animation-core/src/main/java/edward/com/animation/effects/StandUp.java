@@ -2,6 +2,7 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 /**
@@ -16,7 +17,7 @@ public class StandUp extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         float x = (target.getWidth() - target.getPaddingLeft() - target.getPaddingRight())/2
                 + target.getPaddingLeft();
         float y = target.getHeight() - target.getPaddingBottom();

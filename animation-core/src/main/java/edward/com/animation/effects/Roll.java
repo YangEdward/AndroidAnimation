@@ -19,7 +19,7 @@ public class Roll extends NoDirection implements HasAction {
         this.action = action;
     }
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         float [] alpha = {0, 1};
         float [] translationX = {-(target.getWidth()-target.getPaddingLeft() - target.getPaddingRight()),0};
         float [] rotation = {-120,0};

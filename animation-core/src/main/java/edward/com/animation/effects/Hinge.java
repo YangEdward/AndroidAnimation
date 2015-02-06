@@ -3,6 +3,7 @@ package edward.com.animation.effects;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import edward.com.animation.evaluators.AccelerateDecelerateEvaluator;
@@ -18,7 +19,7 @@ public class Hinge extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         TypeEvaluator<Number> evaluator = new AccelerateDecelerateEvaluator();
         float x = target.getPaddingLeft();
         float y = target.getPaddingTop();

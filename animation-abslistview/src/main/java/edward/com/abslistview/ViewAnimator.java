@@ -17,7 +17,6 @@
 package edward.com.abslistview;
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;

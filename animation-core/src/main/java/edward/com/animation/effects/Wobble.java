@@ -2,11 +2,15 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
-/**
- * Created by Edward on 2015/2/1.
- */
+import edward.com.animation.evaluators.WaveEvaluator;
+
+import static edward.com.animation.effects.AnimPropertyName.ALPHA;
+import static edward.com.animation.effects.AnimPropertyName.ROTATION;
+import static edward.com.animation.effects.AnimPropertyName.TRANSLATION_X;
+
 public class Wobble extends NoDirection {
 
     public Wobble() {
@@ -17,12 +21,16 @@ public class Wobble extends NoDirection {
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         float width = target.getWidth();
-        float one = (float)(width/100.0);
+        float one = (float)(30*width/100.0);
         return new Animator[]{
-                ObjectAnimator.ofFloat(target, "translationX", 0 * one, -25 * one, 20 * one, -15 * one, 10 * one, -5 * one, 0 * one, 0),
-                ObjectAnimator.ofFloat(target, "rotation", 0, -5, 3, -3, 2, -1, 0)
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(TRANSLATION_X,0,0)
+                        .setEvaluator(new WaveEvaluator(one,5))
+                        .getAnimator(),
+                new AnimatorBuilder(target,duration).setAnimatorNoAction(ROTATION,0,0)
+                        .setEvaluator(new WaveEvaluator(5,5))
+                        .getAnimator(),
         };
     }
 
