@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidAnimation.iml" filepath="$PROJECT_DIR$/AndroidAnimation.iml" />
       <module fileurl="file://$PROJECT_DIR$/animation-abslistview/animation-abslistview.iml" filepath="$PROJECT_DIR$/animation-abslistview/animation-abslistview.iml" />
       <module fileurl="file://$PROJECT_DIR$/animation-core/animation-core.iml" filepath="$PROJECT_DIR$/animation-core/animation-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/animation-recyclerview/animation-recyclerview.iml" filepath="$PROJECT_DIR$/animation-recyclerview/animation-recyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
     </modules>
   </component>

@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/animation-abslistview" />
             <option value="$PROJECT_DIR$/animation-core" />
+            <option value="$PROJECT_DIR$/animation-recyclerview" />
             <option value="$PROJECT_DIR$/example" />
           </set>
         </option>
