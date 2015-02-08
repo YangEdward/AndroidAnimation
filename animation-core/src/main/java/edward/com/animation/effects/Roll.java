@@ -9,19 +9,16 @@ import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
 public class Roll extends EffectHasDirection {
 
-    private Action action = Action.IN;
 
     public Roll(){
         super(Direction.TOP_LEFT);
     }
 
     public Roll(@NonNull Action action){
-        super(Direction.TOP_LEFT);
-        this.action = action;
+        super(Direction.TOP_LEFT,action);
     }
     public Roll(@NonNull Action action,@NonNull Direction direction){
-        super(direction);
-        this.action = action;
+        super(direction,action);
     }
 
     @Override

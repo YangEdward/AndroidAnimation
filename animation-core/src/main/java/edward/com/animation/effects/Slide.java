@@ -15,15 +15,12 @@ import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
 public class Slide extends EffectHasDirection  {
 
-    private Action action = Action.IN;
-
     public Slide(@NonNull Direction direction) {
         super(direction);
     }
 
     public Slide(@NonNull Action action,@NonNull Direction direction){
-        super(direction);
-        this.action = action;
+        super(direction,action);
     }
 
     @Override

@@ -11,15 +11,13 @@ public class Rotate extends EffectHasDirection {
 
     private float pivotX;
     private float pivotY;
-    private Action action = Action.IN;
 
     public Rotate(){
         super(null);
     }
 
     public Rotate(Action action) {
-        super(null);
-        this.action = action;
+        super(null,action);
     }
 
     public Rotate(Direction direction) {
@@ -27,8 +25,7 @@ public class Rotate extends EffectHasDirection {
     }
 
     public Rotate(Action action,Direction direction){
-        super(direction);
-        this.action = action;
+        super(direction,action);
     }
 
     @Override

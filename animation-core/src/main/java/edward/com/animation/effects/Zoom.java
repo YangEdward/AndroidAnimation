@@ -16,15 +16,13 @@ import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
 
 public class Zoom extends EffectHasDirection{
-    private Action action = Action.IN;
 
     public Zoom(){
         super(null);
     }
 
     public Zoom(Action action) {
-        super(null);
-        this.action = action;
+        super(null,action);
     }
 
     public Zoom(@NonNull Direction direction) {
@@ -32,8 +30,7 @@ public class Zoom extends EffectHasDirection{
     }
 
     public Zoom(@NonNull Action action,@NonNull Direction direction){
-        super(direction);
-        this.action = action;
+        super(direction,action);
     }
 
     @Override

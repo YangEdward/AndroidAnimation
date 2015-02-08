@@ -16,6 +16,10 @@ public class Fade extends EffectHasDirection {
         super(null);
     }
 
+    public Fade(Direction direction) {
+        super(direction);
+    }
+
     public Fade(Action action,Direction direction){
         super(direction,action);
     }

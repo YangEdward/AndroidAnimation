@@ -41,6 +41,7 @@ public class RecyclerAnimator extends BaseItemAnimator {
 
     private void animateView(RecyclerView.ViewHolder holder,Animator.AnimatorListener listener){
         AnimatorManager.with(holder.itemView)
+                .setNeedReset(false)
                 .putEffect(effectHasDirection)
                 .addListener(listener)
                 .animate();

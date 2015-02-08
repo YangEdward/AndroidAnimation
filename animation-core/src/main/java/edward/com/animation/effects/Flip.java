@@ -29,15 +29,13 @@ import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
 public class Flip extends EffectHasDirection {
 
-    private Action action = Action.IN;
 
     public Flip(Direction direction){
         super(direction);
     }
 
     public Flip(@NonNull Action action,Direction direction){
-        super(direction);
-        this.action = action;
+        super(direction,action);
     }
 
     @Override

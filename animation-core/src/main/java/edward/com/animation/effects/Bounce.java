@@ -18,7 +18,6 @@ import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
  */
 public class Bounce extends EffectHasDirection {
 
-    private Action action;
     private final static int repeatCount = 3;
 
     public Bounce(){
@@ -26,8 +25,7 @@ public class Bounce extends EffectHasDirection {
     }
 
     public Bounce(Action action) {
-        super(null);
-        this.action = action;
+        super(null,action);
     }
 
     public Bounce(Direction direction){
@@ -35,8 +33,7 @@ public class Bounce extends EffectHasDirection {
     }
 
     public Bounce(Action action,Direction direction){
-        super(direction);
-        this.action = action;
+        super(direction,action);
     }
 
     @Override
