@@ -514,7 +514,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         count = mPendingAdditions.size();
         for (int i = count - 1; i >= 0; i--) {
             ViewHolder item = mPendingAdditions.get(i);
-            View view = item.itemView;
+            //View view = item.itemView;
             reset(item.itemView);
             dispatchAddFinished(item);
             mPendingAdditions.remove(i);

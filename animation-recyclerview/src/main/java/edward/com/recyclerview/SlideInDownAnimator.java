@@ -19,16 +19,25 @@ package edward.com.recyclerview;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 
+import edward.com.animation.AnimatorManager;
+import edward.com.animation.effects.Action;
+import edward.com.animation.effects.Direction;
+import edward.com.animation.effects.Fade;
+import edward.com.animation.effects.Slide;
+
 public class SlideInDownAnimator extends BaseItemAnimator {
 
     @Override
     protected void animateRemoveImpl(final RecyclerView.ViewHolder holder) {
-        ViewCompat.animate(holder.itemView)
+        AnimatorManager.with(holder.itemView).
+                putEffect(new Slide(Action.OUT,Direction.BOTTOM)).
+                setDuration(getRemoveDuration()).animate();
+        /*ViewCompat.animate(holder.itemView)
                 .translationY(-holder.itemView.getHeight())
                 .alpha(0)
                 .setDuration(getRemoveDuration())
                 .setListener(new DefaultRemoveVpaListener(holder))
-                .start();
+                .start();*/
         mRemoveAnimations.add(holder);
     }
 
