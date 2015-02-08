@@ -1,5 +1,6 @@
 package edward.com.recyclerview;
 
+import android.animation.Animator;
 import android.support.v7.widget.RecyclerView;
 
 import edward.com.animation.AnimatorManager;
@@ -16,19 +17,19 @@ public class RecyclerAnimator extends BaseItemAnimator {
 
     @Override
     protected void animateRemoveImpl(RecyclerView.ViewHolder holder) {
-        setEffectForReMove();
-        animateView(holder);
+        setEffectForRemove();
+        animateView(holder,new DefaultRemoveVpaListener(holder));
         mRemoveAnimations.add(holder);
     }
 
     @Override
     protected void animateAddImpl(RecyclerView.ViewHolder holder) {
         setEffectForAdd();
-        animateView(holder);
+        animateView(holder,new DefaultAddVpaListener(holder));
         mAddAnimations.add(holder);
     }
 
-    private void setEffectForReMove(){
+    private void setEffectForRemove(){
         effectHasDirection.setDuration(getRemoveDuration());
         effectHasDirection.setAction(Action.OUT);
     }
@@ -38,8 +39,10 @@ public class RecyclerAnimator extends BaseItemAnimator {
         effectHasDirection.setAction(Action.IN);
     }
 
-    private void animateView(RecyclerView.ViewHolder holder){
+    private void animateView(RecyclerView.ViewHolder holder,Animator.AnimatorListener listener){
         AnimatorManager.with(holder.itemView)
-                .putEffect(effectHasDirection).animate();
+                .putEffect(effectHasDirection)
+                .addListener(listener)
+                .animate();
     }
 }

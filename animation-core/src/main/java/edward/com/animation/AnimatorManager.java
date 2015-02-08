@@ -121,6 +121,11 @@ public class AnimatorManager {
         return this;
     }
 
+    public AnimatorManager addListener(Animator.AnimatorListener listener) {
+        animatorSet.addListener(listener);
+        return this;
+    }
+
     public AnimatorManager setStartDelay(long delay) {
         animatorSet.setStartDelay(delay);
         return this;

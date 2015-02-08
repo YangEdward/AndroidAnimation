@@ -7,7 +7,7 @@ import android.view.View;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
-public class Roll extends EffectHasDirection implements HasAction {
+public class Roll extends EffectHasDirection {
 
     private Action action = Action.IN;
 
@@ -109,10 +109,6 @@ public class Roll extends EffectHasDirection implements HasAction {
         return new Animator[0];
     }
 
-    @Override
-    public void setAction(@NonNull Action action) {
-        this.action = action;
-    }
 
     private Animator[] generate(View target,float[] translationX,float[] rotation){
         return new Animator[]{

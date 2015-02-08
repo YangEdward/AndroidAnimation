@@ -2,6 +2,7 @@ package edward.com.animation.effects;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import edward.com.animation.evaluators.OvershootEvaluator;
@@ -15,7 +16,7 @@ import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
  * Time 2015-2-1
  * Created by Edward on 2015/2/1.
  */
-public class Bounce extends EffectHasDirection implements HasAction{
+public class Bounce extends EffectHasDirection {
 
     private Action action;
     private final static int repeatCount = 3;
@@ -39,7 +40,7 @@ public class Bounce extends EffectHasDirection implements HasAction{
     }
 
     @Override
-    public Animator[] getAnimators(View target) {
+    public Animator[] getAnimators(@NonNull View target) {
         if(action == null){
             return new Animator[]{ new AnimatorBuilder(target,duration).
                     setAnimatorNoAction(AnimPropertyName.TRANSLATION_Y,0,-30f).
@@ -67,11 +68,6 @@ public class Bounce extends EffectHasDirection implements HasAction{
                         .setEvaluator(evaluator)
                         .getAnimator()
         };
-    }
-
-    @Override
-    public void setAction(Action action) {
-        this.action = action;
     }
 
     @Override

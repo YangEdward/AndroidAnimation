@@ -7,7 +7,7 @@ import android.view.View;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
-public class Rotate extends EffectHasDirection implements HasAction{
+public class Rotate extends EffectHasDirection {
 
     private float pivotX;
     private float pivotY;
@@ -44,15 +44,6 @@ public class Rotate extends EffectHasDirection implements HasAction{
         pivotY = target.getHeight()/2;
         float from = 200,to = 0;
         return generate(target,from,to,AnimPropertyName.ROTATION);
-    }
-
-    @Override
-    public void setAction(@NonNull Action action) {
-        this.action = action;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
     }
 
     @Override

@@ -13,7 +13,7 @@ import edward.com.animation.evaluators.LinearEvaluator;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
-public class Slide extends EffectHasDirection implements HasAction {
+public class Slide extends EffectHasDirection  {
 
     private Action action = Action.IN;
 
@@ -29,17 +29,6 @@ public class Slide extends EffectHasDirection implements HasAction {
     @Override
     public Animator[] getAnimators(@NonNull View target) {
         return direction.getAnimators(target,this);
-    }
-
-
-    @Override
-    public void setAction(@NonNull Action action) {
-        this.action = action;
-    }
-
-    @Override
-    public void setDirection(@NonNull Direction direction) {
-        this.direction = direction;
     }
 
     @Override

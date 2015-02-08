@@ -15,7 +15,7 @@ import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_X;
 import static edward.com.animation.effects.AnimPropertyName.SCALE_Y;
 
-public class Zoom extends EffectHasDirection implements HasAction{
+public class Zoom extends EffectHasDirection{
     private Action action = Action.IN;
 
     public Zoom(){
@@ -53,16 +53,6 @@ public class Zoom extends EffectHasDirection implements HasAction{
                 new AnimatorBuilder(target,duration,action).setAnimator(SCALE_Y)
                         .getAnimator()
         };
-    }
-
-    @Override
-    public void setAction(@NonNull Action action) {
-        this.action = action;
-    }
-
-    @Override
-    public void setDirection(@NonNull Direction direction) {
-        this.direction = direction;
     }
 
     @Override

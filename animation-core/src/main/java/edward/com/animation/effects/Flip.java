@@ -27,7 +27,7 @@ import edward.com.animation.evaluators.OvershootEvaluator;
 
 import static edward.com.animation.effects.AnimPropertyName.ALPHA;
 
-public class Flip extends EffectHasDirection implements HasAction {
+public class Flip extends EffectHasDirection {
 
     private Action action = Action.IN;
 
@@ -105,10 +105,6 @@ public class Flip extends EffectHasDirection implements HasAction {
         return generate(target,from,to,AnimPropertyName.ROTATION_X);
     }
 
-    @Override
-    public void setAction(@NonNull Action action) {
-        this.action = action;
-    }
 
     private Animator[] generate(View target,float from,float to,AnimPropertyName value){
         evaluator = new AccelerateDecelerateEvaluator();
