@@ -19,6 +19,7 @@ import edward.com.animation.effects.Fade;
 import edward.com.animation.effects.Flip;
 import edward.com.animation.effects.Slide;
 import edward.com.animation.effects.Zoom;
+import edward.com.recyclerview.RecyclerAdapterDecorator;
 import edward.com.recyclerview.RecyclerAnimator;
 
 public class RecyclerActivity extends ActionBarActivity {
@@ -75,9 +76,12 @@ public class RecyclerActivity extends ActionBarActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new RecyclerAnimator(new Fade()));
-        final RecyclerAdapter adapter = new RecyclerAdapter(this, new ArrayList<>(Arrays.asList(data)));
-        recyclerView.setAdapter(adapter);
+
+        final RecyclerAdapter adapter = new RecyclerAdapter(this,
+                new ArrayList<>(Arrays.asList(data)),recyclerView);
+        final RecyclerAdapterDecorator decorator = new RecyclerAdapterDecorator(adapter,
+                new Slide(Direction.RIGHT),recyclerView);
+        recyclerView.setAdapter(decorator);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> spinnerAdapter =
@@ -89,9 +93,7 @@ public class RecyclerActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                recyclerView.setItemAnimator(new RecyclerAnimator(Type.values()[position].getAnimator()));
-                recyclerView.getItemAnimator().setAddDuration(300);
-                recyclerView.getItemAnimator().setRemoveDuration(300);
+                decorator.setEffectHasDirection(Type.values()[position].getAnimator());
             }
 
             @Override

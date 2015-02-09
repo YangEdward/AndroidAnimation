@@ -101,7 +101,7 @@ public class Zoom extends EffectHasDirection{
     @Override
     public Animator[] bottom(View target) {
         isParentNull(target);
-        float from = parent.getHeight() - target.getTop();
+        float from = parent.getHeight() + target.getTop();
         float to = 0;
         switch (action){
             case IN:

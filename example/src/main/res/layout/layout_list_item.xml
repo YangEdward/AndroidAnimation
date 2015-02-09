@@ -9,7 +9,7 @@
         android:id="@+id/item_image"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#11000000"
+        android:background="#11FF0000"
         android:scaleType="centerCrop"/>
 
     <TextView

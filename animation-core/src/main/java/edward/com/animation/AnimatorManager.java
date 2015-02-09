@@ -78,11 +78,11 @@ public class AnimatorManager {
     }
 
     private void reset(){
-        target.setAlpha(1);
+        /*target.setAlpha(1);
         target.setScaleX(1);
         target.setScaleY(1);
         target.setTranslationX(0);
-        target.setTranslationY(0);
+        target.setTranslationY(0);*/
         target.setRotation(0);
         target.setRotationY(0);
         target.setRotationX(0);

@@ -203,9 +203,9 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
     @Override
     public boolean animateAdd(final ViewHolder holder) {
-        endAnimation(holder);
-        preAnimateAdd(holder);
-        mPendingAdditions.add(holder);
+        //endAnimation(holder);
+        //preAnimateAdd(holder);
+        //mPendingAdditions.add(holder);
         return true;
     }
 
@@ -255,9 +255,9 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
             @Override
             public void onAnimationCancel(Animator animator) {
-                View mView = (View) ((ObjectAnimator) animator).getTarget();
-                if (mView == null) {
-                    mView = view;
+                View mView = view;
+                if(animator instanceof ObjectAnimator){
+                    mView = (View) ((ObjectAnimator) animator).getTarget();
                 }
                 if (deltaX != 0) {
                     mView.setTranslationX(0);
@@ -320,9 +320,9 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    View mView = (View) ((ObjectAnimator) animation).getTarget();
-                    if (mView == null) {
-                        mView = view;
+                    View mView = view;
+                    if(animation instanceof ObjectAnimator){
+                        mView = (View) ((ObjectAnimator) animation).getTarget();
                     }
                     oldViewAnim.setListener(null);
                     mView.setAlpha(1);
@@ -648,12 +648,18 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
         @Override
         public void onAnimationCancel(Animator animation) {
-            //reset(animation.g);
+            if(animation instanceof ObjectAnimator){
+                View view = (View)((ObjectAnimator)animation).getTarget();
+                reset(view);
+            }
         }
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            //reset(view);
+            if(animation instanceof ObjectAnimator){
+                View view = (View)((ObjectAnimator)animation).getTarget();
+                reset(view);
+            }
             dispatchAddFinished(mViewHolder);
             mAddAnimations.remove(mViewHolder);
             dispatchFinishedWhenDone();
@@ -675,12 +681,18 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
         @Override
         public void onAnimationCancel(Animator animation) {
-            //reset(view);
+            if(animation instanceof ObjectAnimator){
+                View view = (View)((ObjectAnimator)animation).getTarget();
+                reset(view);
+            }
         }
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            //reset(view);
+            if(animation instanceof ObjectAnimator){
+                View view = (View)((ObjectAnimator)animation).getTarget();
+                reset(view);
+            }
             dispatchRemoveFinished(mViewHolder);
             mRemoveAnimations.remove(mViewHolder);
             dispatchFinishedWhenDone();

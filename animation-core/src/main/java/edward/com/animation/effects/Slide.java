@@ -78,14 +78,14 @@ public class Slide extends EffectHasDirection  {
     @Override
     public Animator[] bottom(View target) {
         isParentNull(target);
-        float from = parent.getHeight() - target.getTop();
+        float from = parent.getHeight() + target.getTop();
         float to = 0;
         switch (action){
             case IN:
                 break;
             case OUT:
                 from = 0;
-                to = parent.getHeight() - target.getTop();
+                to = parent.getHeight() + target.getTop();
                 break;
         }
         return generate(target,from,to,AnimPropertyName.TRANSLATION_Y);

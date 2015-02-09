@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import edward.com.animation.AnimatorManager;
 import edward.com.animation.effects.Action;
 import edward.com.animation.effects.EffectHasDirection;
+import edward.com.animation.utils.LayerUtil;
 
 public class RecyclerAnimator extends BaseItemAnimator {
 
@@ -24,26 +25,19 @@ public class RecyclerAnimator extends BaseItemAnimator {
 
     @Override
     protected void animateAddImpl(RecyclerView.ViewHolder holder) {
-        setEffectForAdd();
-        animateView(holder,new DefaultAddVpaListener(holder));
-        mAddAnimations.add(holder);
     }
 
     private void setEffectForRemove(){
-        effectHasDirection.setDuration(getRemoveDuration());
         effectHasDirection.setAction(Action.OUT);
     }
 
-    private void setEffectForAdd(){
-        effectHasDirection.setDuration(getAddDuration());
-        effectHasDirection.setAction(Action.IN);
-    }
-
     private void animateView(RecyclerView.ViewHolder holder,Animator.AnimatorListener listener){
+        LayerUtil.manageLayer(holder.itemView,true);
         AnimatorManager.with(holder.itemView)
                 .setNeedReset(false)
                 .putEffect(effectHasDirection)
                 .addListener(listener)
                 .animate();
+        LayerUtil.manageLayer(holder.itemView,false);
     }
 }

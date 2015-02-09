@@ -13,26 +13,35 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import edward.com.animation.AnimatorManager;
+import edward.com.animation.effects.Direction;
+import edward.com.animation.effects.Fade;
+import edward.com.animation.effects.Slide;
+import edward.com.animation.utils.LayerUtil;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private Context mContext;
     private List<String> mDataSet;
+    private RecyclerView recyclerView;
 
-    public RecyclerAdapter(Context context, List<String> dataSet) {
+    public RecyclerAdapter(Context context, List<String> dataSet,RecyclerView recyclerView) {
         mContext = context;
         mDataSet = dataSet;
+        this.recyclerView = recyclerView;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext)
                 .inflate(R.layout.layout_list_item, parent, false);
+
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Picasso.with(mContext).load(R.drawable.chip).into(holder.image);
+        //Picasso.with(mContext).load(R.drawable.chip).into(holder.image);
         holder.text.setText(mDataSet.get(position));
     }
 
