@@ -169,9 +169,9 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         if (getDecoratedBaseAdapter() instanceof AnimationAdapter) {
             AnimationAdapter animationAdapter = ((AnimationAdapter) getDecoratedBaseAdapter());
             childAnimators = animationAdapter.getAnimators(parent, view);
-            if(animationAdapter.getHelper() != null){
+            /*if(animationAdapter.getHelper() != null){
                 addOldHelperEffectsToNewHelper(animationAdapter.getEffects());
-            }
+            }*/
         } else {
             childAnimators = new Animator[0];
         }
@@ -181,12 +181,12 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         mViewAnimator.animateViewIfNecessary(position, view, concatAnimators);
     }
 
-    private void addOldHelperEffectsToNewHelper(EffectHasDirection effectHasDirection){
+    /*private void addOldHelperEffectsToNewHelper(EffectHasDirection effectHasDirection){
         if(helper == null){
             addScrollHelper();
         }
         helper.addEffect(effectHasDirection);
-    }
+    }*/
 
     private void setChildDuration(Animator[] childAnimators){
         if (childAnimators.length != 0){
@@ -215,7 +215,7 @@ public class AnimationAdapter extends BaseAdapterDecorator {
 
     public void setEffect(EffectHasDirection effect) {
         this.effect = effect;
-        //helper.setEffect(effect);
+        helper.setEffect(effect);
     }
 
     public long getDuration(){
@@ -224,8 +224,7 @@ public class AnimationAdapter extends BaseAdapterDecorator {
 
     public void addScrollHelper() {
         helper = new ScrollHelper();
-        helper.setEffect(new Slide(Direction.RIGHT).setParent((getListViewWrapper().getListView())).
-                setDuration(500));
+        helper.setEffect(effect);
         if (getListViewWrapper() == null) {
             throw new IllegalStateException("Call setAbsListView() on this AnimationAdapter first!");
         }

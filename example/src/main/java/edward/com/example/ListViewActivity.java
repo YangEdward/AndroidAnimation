@@ -16,11 +16,8 @@
 
 package edward.com.example;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,17 +30,15 @@ import java.util.List;
 
 import edward.com.abslistview.AnimationAdapter;
 import edward.com.animation.effects.Direction;
-import edward.com.animation.effects.Fade;
-import edward.com.animation.effects.Rotate;
 import edward.com.animation.effects.Slide;
 import edward.com.example.adapter.DirectionType;
 import edward.com.example.adapter.MyListAdapter;
-import edward.com.example.adapter.RecyclerAdapter;
-import edward.com.recyclerview.RecyclerAdapterDecorator;
 
 public class ListViewActivity extends ActionBarActivity {
+
     private ListView listView;
     private List<String> data = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +70,7 @@ public class ListViewActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //animationAdapter.setEffect(DirectionType.values()[position].getAnimator());
+                animationAdapter.setEffect(DirectionType.values()[position].getAnimator());
             }
 
             @Override

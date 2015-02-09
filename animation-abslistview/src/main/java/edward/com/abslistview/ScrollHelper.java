@@ -43,12 +43,11 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
     private boolean mIsFlingEvent;
     private boolean mSimulateGridWithList;
     private final HashSet<Integer> mAlreadyAnimatedItems = new HashSet<>();
-    private List<Effect4View> effects = new ArrayList<>();
+    private Effect4View effects;
     //public static final int DURATION = 600;
     private AbsListView.OnScrollListener mAdditionalOnScrollListener;
 
     public ScrollHelper() {
-        effects.clear();
     }
 
     public void setOnScrollListener(AbsListView.OnScrollListener l) {
@@ -177,21 +176,16 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
     }
 
     public void setEffect(EffectHasDirection effect) {
-        effects.clear();
-        addEffect(effect);
+        effects = effect;
+        //addEffect(effect);
     }
 
-    public void addEffect(EffectHasDirection effect) {
-        effects.add(effect);
-    }
 
     private void doAnimationImpl(View item, int position, int scrollDirection) {
         /*scrollDirection = scrollDirection > 0 ? 1 : -1;*/
-        synchronized (ScrollHelper.class){
-            AnimatorManager.with(item)
-                    .putEffects(effects)
-                    .animate();
-        }
+        AnimatorManager.with(item)
+                .putEffect(effects)
+                .animate();
         /*mEffect.initView(item, position, scrollDirection);
         mEffect.setupAnimation(item, position, scrollDirection, animator);
         animator.start();*/
