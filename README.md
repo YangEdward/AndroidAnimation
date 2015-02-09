@@ -44,21 +44,21 @@ The library consists of separate modules:
 Getting Started
 -----
 ###Use
-#### view
+#### * view
 for single view,need to put Effect4View. you can put all effect in it.
      
-     AnimatorManager.with(text1).putEffect(effect4View)
+     AnimatorManager.with(view).putEffect(effect4View)
                 .animate();
      
-#### ViewGroup
+#### * ViewGroup
 for ViewGroup,need to put Effect4View. you can put all effect in it.
 
-    ViewGroupControl control = ViewGroupControl.with(group1,0);
+    ViewGroupControl control = ViewGroupControl.with(group,0);
         control.setEffectForAllView(new Slide(Direction.RIGHT));
         control.setEffectForViewAt(1,new Slide(Direction.LEFT));
         control.start();
     
-#### listview and gridview
+#### * * listview and gridview
 for abslistview , need to put EffectHasDirection which can set action and Direction.
 
     MyListAdapter adapter = new MyListAdapter(this,
@@ -70,7 +70,7 @@ for abslistview , need to put EffectHasDirection which can set action and Direct
         animationAdapter.addScrollHelper();
         listView.setAdapter(animationAdapter);
     
-#### recyclerView
+#### * recyclerView
 for recyclerView , need to put EffectHasDirection which can set action and Direction.
 
     RecyclerAdapter adapter = new RecyclerAdapter(this,
@@ -79,7 +79,7 @@ for recyclerView , need to put EffectHasDirection which can set action and Direc
                 new Rotate(Direction.RIGHT),recyclerView);
         recyclerView.setAdapter(decorator);
     
-#### ViewPager
+#### * ViewPager
 for recyclerView , need to put EffectTransformer.
 
     pager = (ViewPager) findViewById(R.id.animPager);
@@ -87,15 +87,14 @@ for recyclerView , need to put EffectTransformer.
     
 ###Expand
 if you have good ideas, please pull request, it's very easy.
-#### View ViewGroup
+#### * View ViewGroup
 create class which implements Effect4View.if it has action,please extends NoDirection.
 if it also has direction,please extends EffectHasDirection
-#### List Grid recycler
+#### * List Grid recycler
 create class which extends EffectHasDirection
-#### ViewPager
+#### * ViewPager
 create class which extends EffectTransformer
-
-after that,most of time,your class have perfect show in my library.
+* after that,most of time,your class have perfect show in my library.
 
 Contribute
 -----
