@@ -1,7 +1,5 @@
-package edward.com.recyclerview;
 /*
- * Copyright (C) 2015 Wasabeef
- * Copyright (C) 2014 The Android Open Source Project
+ * Copyright (C) 2015 YangEdward
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +12,9 @@ package edward.com.recyclerview;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
+package edward.com.recyclerview;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.support.v4.view.ViewCompat;
@@ -256,7 +254,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             @Override
             public void onAnimationCancel(Animator animator) {
                 View mView = view;
-                if(animator instanceof ObjectAnimator){
+                if (animator instanceof ObjectAnimator) {
                     mView = (View) ((ObjectAnimator) animator).getTarget();
                 }
                 if (deltaX != 0) {

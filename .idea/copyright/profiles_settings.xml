@@ -1,5 +1,8 @@
 <component name="CopyrightManager">
-  <settings default="">
+  <settings default="LICENSE">
+    <module2copyright>
+      <element module="All" copyright="LICENSE" />
+    </module2copyright>
     <LanguageOptions name="JAVA">
       <option name="fileTypeOverride" value="3" />
     </LanguageOptions>

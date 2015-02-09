@@ -1,5 +1,25 @@
+
+/*
+ * Copyright (C) 2015 YangEdward
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package edward.com.example;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +37,7 @@ import edward.com.animation.effects.Direction;
 import edward.com.animation.effects.EffectHasDirection;
 import edward.com.animation.effects.Fade;
 import edward.com.animation.effects.Flip;
+import edward.com.animation.effects.Rotate;
 import edward.com.animation.effects.Slide;
 import edward.com.animation.effects.Zoom;
 import edward.com.recyclerview.RecyclerAdapterDecorator;
@@ -43,7 +64,11 @@ public class RecyclerActivity extends ActionBarActivity {
         SlideInLeft(new Slide(Direction.LEFT)),
         SlideInRight(new Slide(Direction.RIGHT)),
         SlideInDown(new Slide(Direction.BOTTOM)),
-        SlideInUp(new Slide(Direction.TOP));
+        SlideInUp(new Slide(Direction.TOP)),
+        RotateLeft(new Rotate(Direction.LEFT)),
+        RotateRight(new Rotate(Direction.RIGHT)),
+        RotateBottom(new Rotate(Direction.BOTTOM)),
+        RotateTop(new Rotate(Direction.TOP));
         //OvershootInRight(new OvershootInRightAnimator()),
         //OvershootInLeft(new OvershootInLeftAnimator());
 
@@ -80,9 +105,10 @@ public class RecyclerActivity extends ActionBarActivity {
         final RecyclerAdapter adapter = new RecyclerAdapter(this,
                 new ArrayList<>(Arrays.asList(data)));
         final RecyclerAdapterDecorator decorator = new RecyclerAdapterDecorator(adapter,
-                new Slide(Direction.RIGHT),recyclerView);
+                new Rotate(Direction.RIGHT),recyclerView);
         recyclerView.setAdapter(decorator);
-
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> spinnerAdapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
