@@ -30,7 +30,9 @@ public class Slide extends EffectHasDirection  {
 
     @Override
     public Animator[] top(View target) {
-        float from = -(target.getTop() + target.getHeight());
+        isParentNull(target);
+        float from = -parent.getHeight();
+        //float from = -(target.getTop() + target.getHeight());
         float to = 0;
         switch (action){
             case IN:

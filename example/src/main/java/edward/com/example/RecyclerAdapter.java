@@ -23,12 +23,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private Context mContext;
     private List<String> mDataSet;
-    private RecyclerView recyclerView;
 
-    public RecyclerAdapter(Context context, List<String> dataSet,RecyclerView recyclerView) {
+    public RecyclerAdapter(Context context, List<String> dataSet) {
         mContext = context;
         mDataSet = dataSet;
-        this.recyclerView = recyclerView;
     }
 
     @Override

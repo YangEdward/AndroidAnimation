@@ -54,7 +54,8 @@ public class Zoom extends EffectHasDirection{
 
     @Override
     public Animator[] top(View target) {
-        float from = -target.getBottom();
+        isParentNull(target);
+        float from = -parent.getHeight();
         float to = 0;
         switch (action){
             case IN:
@@ -69,7 +70,9 @@ public class Zoom extends EffectHasDirection{
 
     @Override
     public Animator[] left(View target) {
-        float from = -target.getRight();
+        isParentNull(target);
+        float from = target.getLeft() - parent.getWidth();
+        //float from = -target.getRight();
         float to = 0;
         switch (action){
             case IN:
@@ -84,8 +87,10 @@ public class Zoom extends EffectHasDirection{
 
     @Override
     public Animator[] right(View target) {
+        //isParentNull(target);
+        //float from = target.getWidth() + target.getPaddingRight();
         isParentNull(target);
-        float from = target.getWidth() + target.getPaddingRight();
+        float from = parent.getWidth() - target.getLeft();
         float to = 0;
         switch (action){
             case IN:

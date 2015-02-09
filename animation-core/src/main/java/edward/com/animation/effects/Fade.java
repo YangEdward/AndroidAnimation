@@ -41,12 +41,14 @@ public class Fade extends EffectHasDirection {
 
     @Override
     public Animator[] top(View target) {
-        float fromY = -target.getHeight()/4;
+        isParentNull(target);
+        float fromY = -parent.getHeight()/4;
+        //float fromY = -target.getHeight()/4;
         float toY = 0;
         switch (action){
             case OUT:
+                toY = fromY;
                 fromY = 0;
-                toY = -target.getHeight()/4;
                 break;
         }
         return generate(target,fromY,toY,TRANSLATION_Y);
@@ -54,12 +56,13 @@ public class Fade extends EffectHasDirection {
 
     @Override
     public Animator[] left(View target) {
-        float fromY = -target.getWidth()/4;
+        isParentNull(target);
+        float fromY = -parent.getWidth()/4;
         float toY = 0;
         switch (action){
             case OUT:
+                toY = fromY;
                 fromY = 0;
-                toY = -target.getWidth()/4;
                 break;
         }
         return generate(target, fromY, toY, TRANSLATION_X);
@@ -67,12 +70,14 @@ public class Fade extends EffectHasDirection {
 
     @Override
     public Animator[] right(View target) {
-        float fromY = target.getWidth()/4;
+        //float fromY = target.getWidth()/4;
+        isParentNull(target);
+        float fromY = parent.getWidth()/4;
         float toY = 0;
         switch (action){
             case OUT:
+                toY = fromY;
                 fromY = 0;
-                toY = target.getWidth()/4;
                 break;
         }
         return generate(target, fromY, toY, TRANSLATION_X);
@@ -80,12 +85,14 @@ public class Fade extends EffectHasDirection {
 
     @Override
     public Animator[] bottom(View target) {
-        float fromY = target.getHeight()/4;
+        isParentNull(target);
+        float fromY = parent.getHeight()/4;
+        //float fromY = target.getHeight()/4;
         float toY = 0;
         switch (action){
             case OUT:
+                toY = fromY;
                 fromY = 0;
-                toY = target.getHeight()/4;
                 break;
         }
         return generate(target,fromY,toY,TRANSLATION_Y);

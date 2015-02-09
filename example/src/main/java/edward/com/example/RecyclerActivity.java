@@ -78,7 +78,7 @@ public class RecyclerActivity extends ActionBarActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         final RecyclerAdapter adapter = new RecyclerAdapter(this,
-                new ArrayList<>(Arrays.asList(data)),recyclerView);
+                new ArrayList<>(Arrays.asList(data)));
         final RecyclerAdapterDecorator decorator = new RecyclerAdapterDecorator(adapter,
                 new Slide(Direction.RIGHT),recyclerView);
         recyclerView.setAdapter(decorator);

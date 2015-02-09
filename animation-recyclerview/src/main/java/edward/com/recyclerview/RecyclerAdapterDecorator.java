@@ -46,9 +46,6 @@ public class RecyclerAdapterDecorator extends RecyclerView.Adapter{
         return mDecoratedAdapter.getItemId(position);
     }
 
-    public void setRecyclerView(RecyclerView recyclerView) {
-        this.recyclerView = recyclerView;
-    }
 
     public void setEffectHasDirection(EffectHasDirection effectHasDirection) {
         effectHasDirection.setParent(recyclerView);
@@ -59,6 +56,10 @@ public class RecyclerAdapterDecorator extends RecyclerView.Adapter{
     @Override
     public void onViewRecycled(RecyclerView.ViewHolder holder) {
         mDecoratedAdapter.onViewRecycled(holder);
+    }
+
+    public EffectHasDirection getEffectHasDirection() {
+        return effectHasDirection;
     }
 
     @Override
@@ -99,10 +100,13 @@ public class RecyclerAdapterDecorator extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         mDecoratedAdapter.onBindViewHolder(viewHolder,i);
-        AnimatorManager.with(viewHolder.itemView)
+        AnimatorManager manager = AnimatorManager.with(viewHolder.itemView)
                 .setNeedReset(false)
-                .putEffect(effectHasDirection.setAction(Action.IN))
-                .animate();
+                .putEffect(effectHasDirection.setAction(Action.IN));
+        if(mDecoratedAdapter instanceof RecyclerAdapterDecorator){
+            manager.putEffect(((RecyclerAdapterDecorator) mDecoratedAdapter).getEffectHasDirection());
+        }
+        manager.animate();
     }
 
     @Override
