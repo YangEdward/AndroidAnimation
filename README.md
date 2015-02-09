@@ -1,6 +1,5 @@
-AndroidAnimation
+### AndroidAnimation
 Easy to use, easy to expand。Android animation for View，ViewGroup,ListView,GridView,ViewPager,RecyclerView
-===========
 
 AndroidAnimation is an Open Source Android library that allows developers to easily use animations on View,ViewGroup,ListView,GridView,ViewPager and RecyclerView.
 Feel free to use it all you want in your Android apps provided that you cite this project and include the license in your app.
