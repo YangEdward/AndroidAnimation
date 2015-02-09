@@ -27,7 +27,9 @@ import android.widget.BaseAdapter;
 
 import edward.com.abslistview.util.AnimatorUtil;
 import edward.com.abslistview.util.ListViewWrapper;
+import edward.com.animation.effects.Direction;
 import edward.com.animation.effects.EffectHasDirection;
+import edward.com.animation.effects.Slide;
 
 /**
  * A {@link BaseAdapterDecorator} class which applies multiple {@link android.animation.Animator}s at once to views when they are first shown. The Animators applied include the animations specified
@@ -211,13 +213,19 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         return effect;
     }
 
+    public void setEffect(EffectHasDirection effect) {
+        this.effect = effect;
+        //helper.setEffect(effect);
+    }
+
     public long getDuration(){
         return effect.getDuration();
     }
 
     public void addScrollHelper() {
         helper = new ScrollHelper();
-        helper.setEffect(effect);
+        helper.setEffect(new Slide(Direction.RIGHT).setParent((getListViewWrapper().getListView())).
+                setDuration(500));
         if (getListViewWrapper() == null) {
             throw new IllegalStateException("Call setAbsListView() on this AnimationAdapter first!");
         }

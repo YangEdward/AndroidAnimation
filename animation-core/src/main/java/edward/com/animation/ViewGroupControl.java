@@ -35,6 +35,7 @@ public class ViewGroupControl {
     private HashMap<View,AnimatorManager> map = new HashMap<>();
     private long startDelay;
     private boolean isReverse = false;
+    private final static long START_DELAY = 500;
 
     private ViewGroupControl(@NonNull ViewGroup target,long startDelay){
         this.target = target;
@@ -42,7 +43,7 @@ public class ViewGroupControl {
     }
 
     public static ViewGroupControl with(@NonNull ViewGroup target){
-        return new ViewGroupControl(target,500);
+        return new ViewGroupControl(target,START_DELAY);
     }
 
     public static ViewGroupControl with(@NonNull ViewGroup target,long startDelay){

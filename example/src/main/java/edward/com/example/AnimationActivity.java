@@ -21,11 +21,15 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import edward.com.animation.viewpager.Accordion;
@@ -45,6 +49,8 @@ import edward.com.animation.viewpager.ZoomIn;
 import edward.com.animation.viewpager.ZoomOut;
 import edward.com.animation.viewpager.ZoomOutSlide;
 import edward.com.animation.viewpager.EffectTransformer;
+import edward.com.example.adapter.DirectionType;
+import edward.com.example.adapter.PagerType;
 
 public class AnimationActivity extends ActionBarActivity {
 
@@ -53,20 +59,43 @@ public class AnimationActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         setViewPagerEffect(new Tablet());
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> spinnerAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        for (PagerType type : PagerType.values()) {
+            spinnerAdapter.add(type.name());
+        }
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setEffecft(PagerType.values()[position].name());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         String[] effects = this.getResources().getStringArray(R.array.effects);
         for (String effect : effects)
             menu.add(effect);
         return true;
-    }
+    }*/
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        String effectStr = item.getTitle().toString();
+  /*  @Override
+    public boolean onOptionsItemSelected(MenuItem item) {*/
+    private void setEffecft(String effectStr){
+        //String effectStr = item.getTitle().toString();
         EffectTransformer effect = null;
         switch (effectStr){
             case "Standard":
@@ -121,7 +150,6 @@ public class AnimationActivity extends ActionBarActivity {
                 break;
         }
         setViewPagerEffect(effect);
-        return true;
     }
 
     private void setViewPagerEffect(EffectTransformer effect) {

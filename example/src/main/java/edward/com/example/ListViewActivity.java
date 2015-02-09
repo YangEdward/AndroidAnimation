@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2015 YangEdward
  *
@@ -17,6 +16,7 @@
 
 package edward.com.example;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,41 +25,45 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import edward.com.abslistview.AnimationAdapter;
 import edward.com.animation.effects.Direction;
+import edward.com.animation.effects.Fade;
 import edward.com.animation.effects.Rotate;
+import edward.com.animation.effects.Slide;
 import edward.com.example.adapter.DirectionType;
+import edward.com.example.adapter.MyListAdapter;
 import edward.com.example.adapter.RecyclerAdapter;
 import edward.com.recyclerview.RecyclerAdapterDecorator;
 
-public class RecyclerActivity extends ActionBarActivity {
-
+public class ListViewActivity extends ActionBarActivity {
+    private ListView listView;
     private List<String> data = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.abs_listveiw);
+        listView = (ListView)findViewById(R.id.viewList);
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         for (int i = 0; i < 100; i++){
             data.add("Item" + i);
         }
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        final RecyclerAdapter adapter = new RecyclerAdapter(this,
+        MyListAdapter adapter = new MyListAdapter(this,
                 new ArrayList<>(data));
-        final RecyclerAdapterDecorator decorator = new RecyclerAdapterDecorator(adapter,
-                new Rotate(Direction.RIGHT),recyclerView);
-        recyclerView.setAdapter(decorator);
+        final AnimationAdapter animationAdapter = new AnimationAdapter(adapter,
+                new Slide(Direction.RIGHT).setParent(listView).
+                        setDuration(500));
+        animationAdapter.setAbsListView(listView);
+        animationAdapter.addScrollHelper();
+        listView.setAdapter(animationAdapter);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> spinnerAdapter =
@@ -71,26 +75,12 @@ public class RecyclerActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                decorator.setEffectHasDirection(DirectionType.values()[position].getAnimator());
+                //animationAdapter.setEffect(DirectionType.values()[position].getAnimator());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-
-        findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapter.add("newly added item", 1);
-            }
-        });
-
-        findViewById(R.id.del).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapter.remove(1);
             }
         });
     }

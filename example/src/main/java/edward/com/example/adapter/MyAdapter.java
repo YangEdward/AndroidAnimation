@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package edward.com.example;
+package edward.com.example.adapter;
 
 import android.content.Context;
 import android.view.View;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package edward.com.example;
+package edward.com.example.adapter;
 
 
 import android.content.Context;
@@ -29,11 +29,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import edward.com.animation.AnimatorManager;
-import edward.com.animation.effects.Direction;
-import edward.com.animation.effects.Fade;
-import edward.com.animation.effects.Slide;
-import edward.com.animation.utils.LayerUtil;
+import edward.com.example.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
@@ -55,7 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //Picasso.with(mContext).load(R.drawable.chip).into(holder.image);
+        Picasso.with(mContext).load(R.drawable.chip).into(holder.image);
         holder.text.setText(mDataSet.get(position));
     }
 

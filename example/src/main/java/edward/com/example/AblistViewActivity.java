@@ -18,16 +18,14 @@ package edward.com.example;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edward.com.abslistview.AnimationAdapter;
-import edward.com.animation.effects.Bounce;
 import edward.com.animation.effects.Direction;
 import edward.com.animation.effects.Slide;
-import edward.com.animation.effects.Zoom;
+import edward.com.example.adapter.MyAdapter;
 
 
 public class AblistViewActivity extends ListActivity{

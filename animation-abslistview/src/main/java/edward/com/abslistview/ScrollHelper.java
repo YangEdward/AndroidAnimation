@@ -187,9 +187,11 @@ public class ScrollHelper implements AbsListView.OnScrollListener {
 
     private void doAnimationImpl(View item, int position, int scrollDirection) {
         /*scrollDirection = scrollDirection > 0 ? 1 : -1;*/
-        AnimatorManager.with(item)
-                .putEffects(effects)
-                .animate();
+        synchronized (ScrollHelper.class){
+            AnimatorManager.with(item)
+                    .putEffects(effects)
+                    .animate();
+        }
         /*mEffect.initView(item, position, scrollDirection);
         mEffect.setupAnimation(item, position, scrollDirection, animator);
         animator.start();*/

@@ -9,27 +9,15 @@
         android:id="@+id/firstText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World 1"
+        android:text="Hello World"
         android:gravity="center"
+        android:layout_marginTop="32dp"
         android:padding="32dp"
         android:textSize="48sp"/>
-    <Button
-        android:id="@+id/start1"
+    <ListView
+        android:id="@+id/viewList"
         android:layout_width="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/secondText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World 2"
-        android:padding="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:textSize="48sp"/>
-    <Button
-        android:id="@+id/start2"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:paddingLeft="32dp"
+        android:layout_height="match_parent">
+        </ListView>
 </LinearLayout>
