@@ -35,14 +35,67 @@ Setup
 
 The library consists of separate modules:
 
-* `animation-core`: The core of the library, and contains animations.
+* `animation-core`: The core of the library, and contains animations. it also contains many evaluators and interpolators,you
+* can use them in you project.
 * `animation-abslistview`: decorator adapter for abslistview
 * `animation-recylerview`: decorator adapter for recyclerview.
 * `example`: how to use the library.
 
 Getting Started
 -----
-please see examples
+###Use
+#### view
+for single view,need to put Effect4View. you can put all effect in it.
+     
+     AnimatorManager.with(text1).putEffect(effect4View)
+                .animate();
+     
+#### ViewGroup
+for ViewGroup,need to put Effect4View. you can put all effect in it.
+
+    ViewGroupControl control = ViewGroupControl.with(group1,0);
+        control.setEffectForAllView(new Slide(Direction.RIGHT));
+        control.setEffectForViewAt(1,new Slide(Direction.LEFT));
+        control.start();
+    
+#### listview and gridview
+for abslistview , need to put EffectHasDirection which can set action and Direction.
+
+    MyListAdapter adapter = new MyListAdapter(this,
+                new ArrayList<>(data));
+        final AnimationAdapter animationAdapter = new AnimationAdapter(adapter,
+                new Slide(Direction.RIGHT).setParent(listView).
+                        setDuration(500));
+        animationAdapter.setAbsListView(listView);
+        animationAdapter.addScrollHelper();
+        listView.setAdapter(animationAdapter);
+    
+#### recyclerView
+for recyclerView , need to put EffectHasDirection which can set action and Direction.
+
+    RecyclerAdapter adapter = new RecyclerAdapter(this,
+                new ArrayList<>(data));
+        RecyclerAdapterDecorator decorator = new RecyclerAdapterDecorator(adapter,
+                new Rotate(Direction.RIGHT),recyclerView);
+        recyclerView.setAdapter(decorator);
+    
+#### ViewPager
+for recyclerView , need to put EffectTransformer.
+
+    pager = (ViewPager) findViewById(R.id.animPager);
+    pager.setPageTransformer(true, effect);
+    
+###Expand
+if you have good ideas, please pull request, it's very easy.
+#### View ViewGroup
+create class which implements Effect4View.if it has action,please extends NoDirection.
+if it also has direction,please extends EffectHasDirection
+#### List Grid recycler
+create class which extends EffectHasDirection
+#### ViewPager
+create class which extends EffectTransformer
+
+after that,most of time,your class have perfect show in my library.
 
 Contribute
 -----
