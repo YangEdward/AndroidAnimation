@@ -17,6 +17,8 @@ AndroidAnimation provides the following features:
 * ViewPager : wonderful animations for ViewPager pager transformer
 * worked above api14
 
+[Download Demo](https://github.com/YangEdward/AndroidAnimation/blob/master/example/example-release.apk?raw=true)
+
 ### Animations
 #### always for view
 `DropOut`, `Flash`, `Landing`, `Pulse`, `RubberBand`, `Shake`, `StandUp`,
@@ -40,8 +42,6 @@ The library consists of separate modules:
 * `animation-abslistview`: decorator adapter for abslistview
 * `animation-recylerview`: decorator adapter for recyclerview.
 * `example`: how to use the library.
-
-[Download Demo](https://github.com/YangEdward/AndroidAnimation/blob/master/example/example-release.apk?raw=true)
 
 Getting Started
 -----
