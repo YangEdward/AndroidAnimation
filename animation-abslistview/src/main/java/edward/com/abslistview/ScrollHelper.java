@@ -20,9 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 import edward.com.animation.AnimatorManager;
 import edward.com.animation.effects.Effect4View;
