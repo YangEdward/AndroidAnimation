@@ -25,7 +25,7 @@ AndroidAnimation provides the following features:
 #### Appearance animations(for all)
 `Bounce`, `Fade`, `Flip`,`Roll`,`Rotate`,`Slide`,`Zoom`
 Each of them has eight directions include:
-`Top`, `TopLeft`, `TopLeft`,`Right`,`Bottom`,`BottomRight`,`BottomLeft`,`Left`
+`Top`, `TopLeft`, `TopRight`,`Right`,`Bottom`,`BottomRight`,`BottomLeft`,`Left`
 Each of them has two actions include:
 `IN`, `OUT`
 It's very easy to set action and direction.
