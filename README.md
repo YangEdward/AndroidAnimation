@@ -25,7 +25,7 @@ AndroidAnimation provides the following features:
 #### Appearance animations(for all)
 `Bounce`, `Fade`, `Flip`,`Roll`,`Rotate`,`Slide`,`Zoom`
 Each of them has eight directions include:
-`Top`, `TopLeft`, `TopLeft`,`Right`,`Bottom`,`BottomRight`,`BottomLeft`,`Left`
+`Top`, `TopLeft`, `TopRight`,`Right`,`Bottom`,`BottomRight`,`BottomLeft`,`Left`
 Each of them has two actions include:
 `IN`, `OUT`
 It's very easy to set action and direction.
@@ -45,13 +45,13 @@ Getting Started
 -----
 ###Use
 #### * view
-for single view,need to put Effect4View. you can put all effect in it.
+for single view,need to put Effect4View. all of effects can be put in it.
      
      AnimatorManager.with(view).putEffect(effect4View)
                 .animate();
      
 #### * ViewGroup
-for ViewGroup,need to put Effect4View. you can put all effect in it.
+for ViewGroup,need to put Effect4View. all of effects can be put in it.
 
     ViewGroupControl control = ViewGroupControl.with(group,0);
         control.setEffectForAllView(new Slide(Direction.RIGHT));
@@ -108,8 +108,9 @@ Developed By
 
 Special Thanks
 -----
-* Niek Haarman - inspired me
-* ToxicBakery
+* [Niek Haarman](https://github.com/nhaarman/ListViewAnimations) - inspired me
+* [ToxicBakery](https://github.com/ToxicBakery/ViewPagerTransforms)
+* [daimajia](ttps://github.com/daimajia)
 
 License
 -----
