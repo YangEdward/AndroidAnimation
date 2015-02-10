@@ -47,7 +47,7 @@ Upload aar
 -----
 * [animation-core](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-core/animation-core.aar)
 * [animation-abslistview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-abslistview/animation-abslistview.aar)
-* [animation-recylerview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-recylerview/animation-recylerview.aar)
+* [animation-recyclerview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-recyclerview/animation-recyclerview.aar)
 
 
 Getting Started
