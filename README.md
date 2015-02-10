@@ -17,6 +17,8 @@ AndroidAnimation provides the following features:
 * ViewPager : wonderful animations for ViewPager pager transformer
 * worked above api14
 
+[Download Demo](https://github.com/YangEdward/AndroidAnimation/blob/master/example/example-release.apk?raw=true)
+
 ### Animations
 #### always for view
 `DropOut`, `Flash`, `Landing`, `Pulse`, `RubberBand`, `Shake`, `StandUp`,
@@ -110,7 +112,7 @@ Special Thanks
 -----
 * [Niek Haarman](https://github.com/nhaarman/ListViewAnimations) - inspired me
 * [ToxicBakery](https://github.com/ToxicBakery/ViewPagerTransforms)
-* [daimajia](ttps://github.com/daimajia)
+* [daimajia](https://github.com/daimajia)
 
 License
 -----
