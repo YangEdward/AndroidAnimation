@@ -43,6 +43,13 @@ The library consists of separate modules:
 * `animation-recylerview`: decorator adapter for recyclerview.
 * `example`: how to use the library.
 
+Upload aar
+-----
+* [animation-core](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-core/animation-core.aar)
+* [animation-abslistview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-abslistview/animation-abslistview.aar)
+* [animation-recylerview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-recylerview/animation-recylerview.aar)
+
+
 Getting Started
 -----
 ###Use
