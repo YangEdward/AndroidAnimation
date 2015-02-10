@@ -41,6 +41,8 @@ The library consists of separate modules:
 * `animation-recylerview`: decorator adapter for recyclerview.
 * `example`: how to use the library.
 
+[Download Demo](https://github.com/YangEdward/AndroidAnimation/blob/master/example/example-release.apk?raw=true)
+
 Getting Started
 -----
 ###Use
@@ -110,7 +112,7 @@ Special Thanks
 -----
 * [Niek Haarman](https://github.com/nhaarman/ListViewAnimations) - inspired me
 * [ToxicBakery](https://github.com/ToxicBakery/ViewPagerTransforms)
-* [daimajia](ttps://github.com/daimajia)
+* [daimajia](https://github.com/daimajia)
 
 License
 -----
