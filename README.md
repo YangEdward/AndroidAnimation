@@ -108,8 +108,9 @@ Developed By
 
 Special Thanks
 -----
-* Niek Haarman - inspired me
-* ToxicBakery
+* [Niek Haarman](https://github.com/nhaarman/ListViewAnimations) - inspired me
+* [ToxicBakery](https://github.com/ToxicBakery/ViewPagerTransforms)
+* [daimajia](ttps://github.com/daimajia)
 
 License
 -----
