@@ -228,8 +228,9 @@ public class AnimationAdapter extends BaseAdapterDecorator {
         if (getListViewWrapper() == null) {
             throw new IllegalStateException("Call setAbsListView() on this AnimationAdapter first!");
         }
-        ((AbsListView)getListViewWrapper().getListView())
-                .setOnScrollListener(helper);
+        AbsListView view = (AbsListView)getListViewWrapper().getListView();
+        view.setDrawingCacheEnabled(false);
+        view.setOnScrollListener(helper);
     }
 
     public ScrollHelper getHelper() {
