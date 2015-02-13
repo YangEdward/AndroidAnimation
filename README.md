@@ -37,11 +37,17 @@ Setup
 
 The library consists of separate modules:
 
-* `animation-core`: The core of the library, and contains animations. it also contains many evaluators and interpolators,you
-* can use them in you project.
-* `animation-abslistview`: decorator adapter for abslistview
-* `animation-recylerview`: decorator adapter for recyclerview.
+* `animation-core`: The core of the library, and contains animations. it also contains many evaluators and interpolators,you can use them in you project.
+* `animation-abslistview`: decorated adapter for abslistview
+* `animation-recylerview`: decorated adapter for recyclerview.
 * `example`: how to use the library.
+
+Upload aar
+-----
+* [animation-core](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-core/animation-core.aar)
+* [animation-abslistview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-abslistview/animation-abslistview.aar)
+* [animation-recyclerview](https://raw.githubusercontent.com/YangEdward/AndroidAnimation/master/animation-recyclerview/animation-recyclerview.aar)
+
 
 Getting Started
 -----
