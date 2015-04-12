@@ -23,7 +23,7 @@ import android.view.animation.Interpolator;
 
 import edward.com.animation.evaluators.BaseEvaluator;
 
-public class AnimatorBuilder {
+class AnimatorBuilder {
     public static final long DEFAULT_DURATION = 1000;
     protected long duration;
     protected Action action;
