@@ -246,10 +246,10 @@ public class ViewAnimator {
             mAnimationStartMillis = SystemClock.uptimeMillis();
         }
         view.setAlpha(0);
-        AnimatorManager manager = AnimatorManager.with(view)
+        AnimatorManager manager = new AnimatorManager.Builder(view)
                 .putAnimators(animators)
-                .setStartDelay(calculateAnimationDelay(position));
-        manager.setNeedReset(false);
+                .setNeedReset(false)
+                .setStartDelay(calculateAnimationDelay(position)).build();
         manager.animate();
         mAnimators.put(view.hashCode(), manager.getAnimatorSet());
     }

@@ -32,21 +32,109 @@ public class AnimatorManager {
 
     private List<Animator> mAnimators = new ArrayList<>();
     private List<Effect4View> effects = new ArrayList<>();
-    private View target;
+    private final View target;
     private AnimatorSet animatorSet;
-    private boolean isNeedReset = true;
-    private long duration = 1000;
+    private final boolean isNeedReset;
+    private long duration;
 
-    private AnimatorManager(@NonNull View target){
+    /*private AnimatorManager(@NonNull View target){
         this.target = target;
         animatorSet = new AnimatorSet();
+    }*/
+
+    private AnimatorManager(@NonNull Builder builder){
+        this.target = builder.target;
+        this.duration = builder.duration;
+        this.isNeedReset = builder.isNeedReset;
+        animatorSet = new AnimatorSet();
+        animatorSet.setInterpolator(builder.interpolator);
+        animatorSet.addListener(builder.listeners);
+        animatorSet.setStartDelay(builder.startDelay);
+        effects.addAll(builder.effects);
+        mAnimators.addAll(builder.mAnimators);
     }
 
-    public static AnimatorManager with(@NonNull View target){
+    public static class Builder{
+        private Interpolator interpolator;
+        private long startDelay;
+        private View target;
+        private Animator.AnimatorListener listeners;
+        private List<Animator> mAnimators = new ArrayList<>();
+        private List<Effect4View> effects = new ArrayList<>();
+        private boolean isNeedReset = true;
+        private long duration = 1000;
+
+        public Builder(View target) {
+            this.target = target;
+        }
+
+        public AnimatorManager build(){
+            return new AnimatorManager(this);
+        }
+
+        public Builder putEffect(@NonNull Effect4View effect){
+            if(!isContain(effect)){
+                effects.add(effect);
+                mAnimators.addAll(Arrays.asList(effect.getAnimators(target)));
+            }
+            return this;
+        }
+
+        public Builder putEffects(@NonNull List<Effect4View> effects){
+            for (Effect4View effect : effects){
+                if(!isContain(effect)){
+                    effects.add(effect);
+                    mAnimators.addAll(Arrays.asList(effect.getAnimators(target)));
+                }
+            }
+            return this;
+        }
+
+        public Builder putAnimators(@NonNull Animator[] animators){
+            mAnimators.addAll(Arrays.asList(animators));
+            return this;
+        }
+
+        public Builder setNeedReset(boolean isNeedReset) {
+            this.isNeedReset = isNeedReset;
+            return this;
+        }
+
+        public Builder setDuration(long duration) {
+            this.duration = duration;
+            return this;
+        }
+
+        public Builder addListener(@NonNull Animator.AnimatorListener listener) {
+            this.listeners = listener;
+            return this;
+        }
+
+        public Builder setStartDelay(long delay) {
+            startDelay = delay;
+            return this;
+        }
+
+        public Builder setInterpolator(@NonNull Interpolator interpolator) {
+            this.interpolator = interpolator;
+            return this;
+        }
+
+        public boolean isContain(@NonNull Effect4View effect){
+            return effects.contains(effect);
+        }
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+        animatorSet.setDuration(duration);
+    }
+
+    /*public static AnimatorManager with(@NonNull View target){
         return new AnimatorManager(target);
-    }
+    }*/
 
-    public AnimatorManager putEffect(@NonNull Effect4View effect){
+    /*public AnimatorManager putEffect(@NonNull Effect4View effect){
         if(!isContain(effect)){
             effects.add(effect);
             mAnimators.addAll(Arrays.asList(effect.getAnimators(target)));
@@ -66,6 +154,14 @@ public class AnimatorManager {
 
     public AnimatorManager putAnimators(@NonNull Animator[] animators){
         mAnimators.addAll(Arrays.asList(animators));
+        return this;
+    }*/
+
+    public AnimatorManager putEffect(@NonNull Effect4View effect){
+        if(!isContain(effect)){
+            effects.add(effect);
+            mAnimators.addAll(Arrays.asList(effect.getAnimators(target)));
+        }
         return this;
     }
 
@@ -110,6 +206,7 @@ public class AnimatorManager {
         animatorSet.playTogether(mAnimators);
     }
 
+
     /**
      * start to animate
      */
@@ -127,35 +224,6 @@ public class AnimatorManager {
         return isNeedReset;
     }
 
-    public AnimatorManager setNeedReset(boolean isNeedReset) {
-        this.isNeedReset = isNeedReset;
-        return this;
-    }
-
-    public AnimatorManager setDuration(long duration) {
-        this.duration = duration;
-        return this;
-    }
-
-    public AnimatorManager addListener(Animator.AnimatorListener listener) {
-        animatorSet.addListener(listener);
-        return this;
-    }
-
-    public AnimatorManager setStartDelay(long delay) {
-        animatorSet.setStartDelay(delay);
-        return this;
-    }
-
-    public AnimatorManager setInterpolator(@NonNull Interpolator interpolator) {
-        animatorSet.setInterpolator(interpolator);
-        return this;
-    }
-
-    public AnimatorManager addAnimatorListener(@NonNull Animator.AnimatorListener l) {
-        animatorSet.addListener(l);
-        return this;
-    }
 
     public long getStartDelay() {
         return animatorSet.getStartDelay();

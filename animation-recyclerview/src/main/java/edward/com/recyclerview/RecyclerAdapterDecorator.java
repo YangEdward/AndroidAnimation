@@ -116,9 +116,9 @@ public class RecyclerAdapterDecorator extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         mDecoratedAdapter.onBindViewHolder(viewHolder,i);
-        AnimatorManager manager = AnimatorManager.with(viewHolder.itemView)
+        AnimatorManager manager = new AnimatorManager.Builder(viewHolder.itemView)
                 .setNeedReset(false)
-                .putEffect(effectHasDirection.setAction(Action.IN));
+                .putEffect(effectHasDirection.setAction(Action.IN)).build();
         if(mDecoratedAdapter instanceof RecyclerAdapterDecorator){
             manager.putEffect(((RecyclerAdapterDecorator) mDecoratedAdapter).getEffectHasDirection());
         }

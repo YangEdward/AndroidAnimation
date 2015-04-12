@@ -48,7 +48,7 @@ public class ViewActivity extends Activity implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        AnimatorManager.with(text1).putEffect(ViewType.values()[position].getAnimator())
-                .animate();
+        new AnimatorManager.Builder(text1).putEffect(ViewType.values()[position].getAnimator())
+                .build().animate();
     }
 }

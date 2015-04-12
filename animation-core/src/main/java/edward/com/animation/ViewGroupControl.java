@@ -56,9 +56,9 @@ public class ViewGroupControl {
         for (int i = 0; i < count; i++){
             long delay = startDelay * i;
             View child = target.getChildAt(i);
-            map.put(child,AnimatorManager.with(child)
+            map.put(child,new AnimatorManager.Builder(child)
                     .putEffect(effect)
-                    .setStartDelay(delay));
+                    .setStartDelay(delay).build());
         }
     }
 
@@ -69,9 +69,9 @@ public class ViewGroupControl {
             manager.removeAllEffect();
             manager.putEffect(effect);
         }else{
-            map.put(child,AnimatorManager.with(child)
+            map.put(child,new AnimatorManager.Builder(child)
                     .putEffect(effect)
-                    .setStartDelay(startDelay*index));
+                    .setStartDelay(startDelay*index).build());
         }
     }
 
